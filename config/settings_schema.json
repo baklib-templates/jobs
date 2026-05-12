@@ -31,6 +31,17 @@
             "--theme-color-success": "#22c55e",
             "--theme-color-warning": "#f59e0b"
           }
+        },
+        "fashion": {
+          "name": "时尚",
+          "colors": {
+            "--theme-color-primary": "#3D50E0",
+            "--theme-color-secondary": "#E91E63",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#2196F3",
+            "--theme-color-success": "#4CAF50",
+            "--theme-color-warning": "#FFC107"
+          }
         }
       }
     }
