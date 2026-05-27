@@ -12,7 +12,7 @@
       <div class="shrink-0 mr-4 flex items-center gap-3">
         <a
           href="{{ site.index_path }}"
-          class="flex min-w-0 flex-1 items-center gap-2 md:flex-none md:max-w-[min(50%,20rem)] md:gap-3"
+          class="flex min-w-0 flex-1 items-center gap-2 md:flex-none md:max-w-[min(50%,60rem)] md:gap-3"
           aria-label="{{ site.name }}"
         >
           {% if site.settings.logo_url %}
@@ -24,8 +24,9 @@
             />
           {% else %}
             <span class="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-base-300 bg-base-200">
+              {%- assign fallback_logo_url = 'images/logo.jpg' | asset_url -%}
               <img
-                src="{{ site.favicon_url }}"
+                src="{{ site.favicon_url | default: fallback_logo_url }}"
                 alt=""
                 class="h-full w-full object-cover"
               />

@@ -41,7 +41,7 @@ pages:
             location: "London, UK / Remote friendly"
             salary: "$60K - $90K"
             employment_type: "Full-time"
-            apply_url: "/apply"
+            apply_url: "/s/apply"
             description: "Design end-to-end experiences and visual systems for the recruiting portal and employer brand."
             content: |
               <h2>What you’ll do</h2>
@@ -56,7 +56,7 @@ pages:
             location: "Shenzhen"
             salary: "Negotiable"
             employment_type: "Contract"
-            apply_url: "/apply"
+            apply_url: "/s/apply"
             description: "Handle customer issues and maintain the knowledge base to improve satisfaction."
             content: |
               <h2>Requirements</h2>

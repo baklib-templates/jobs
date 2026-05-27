@@ -16,7 +16,7 @@
       "images/theme/preview-page.png"
     ],
     "theme_languages": [
-      { "name": "Simplified Chinese", "value": "zh-CN" },
+      { "name": "简体中文", "value": "zh-CN" },
       { "name": "English", "value": "en" }
     ],
     "recommendations": {
@@ -47,7 +47,7 @@
     }
   },
   {
-    "name": "Site Settings",
+    "name": "Job Post Settings",
     "settings": [
       {
         "type": "header",
@@ -94,7 +94,7 @@
     ]
   },
   {
-    "name": "Site Settings",
+    "name": "Apply Contact Settings",
     "settings": [
       {
         "type": "header",
@@ -173,14 +173,14 @@
         "label": "Header menu HTML",
         "rows": 8,
         "info": "Supports a list of <a> tags for desktop and mobile navigation.",
-        "default": "<a href=\"/s/about\">About</a><a href=\"/s/brand\">Brand</a><a href=\"/s/apply\">Apply</a>"
+        "default": "preset:header_html"
       },
       {
         "id": "footer_html",
         "type": "html",
         "label": "Custom footer HTML",
         "rows": 8,
-        "default": "<a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Terms</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Privacy</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Guidelines</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Why Choose Us?</a>"
+        "default": "preset:footer_html"
       }
     ]
   }
