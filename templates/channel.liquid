@@ -1,26 +1,189 @@
 {%- assign jobs = page.children_in_list | order_by: '-published_at' -%}
+{%- assign filter_keyword = params.keyword | default: '' | strip | downcase -%}
+{%- assign filter_location = params.location | default: '' | strip -%}
+{%- assign filter_salary = params.salary | default: '' | strip -%}
+{%- assign filter_employment_type = params.employment_type | default: '' | strip -%}
+{%- assign filter_experience_level = params.experience_level | default: '' | strip -%}
+{%- assign location_options = site.settings.location_options | default: '' | newline_to_br | split: '<br />' -%}
+{%- assign salary_options = site.settings.salary_options | default: '' | newline_to_br | split: '<br />' -%}
+{%- assign employment_type_options = site.settings.employment_type_options | default: '' | newline_to_br | split: '<br />' -%}
+{%- assign experience_level_options = site.settings.experience_level_options | default: '' | newline_to_br | split: '<br />' -%}
 
-<main class="mx-auto max-w-6xl px-4 sm:px-6 py-10 md:py-12">
-  <div class="mb-6">
-    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">{{ page.link_text }}</h1>
-    {%- if page.settings.description -%}
-      <p class="mt-2 text-slate-600">{{ page.settings.description }}</p>
-    {%- endif -%}
-  </div>
+<main class="grow">
+  <section class="bg-primary py-14 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-4xl font-extrabold text-primary-content md:text-5xl">{{ page.settings.title | default: page.link_text }}</h1>
+        {%- if page.settings.description != blank -%}
+          <p class="mx-auto mt-4 max-w-2xl text-base text-primary-content/80 md:text-lg">{{ page.settings.description }}</p>
+        {%- endif -%}
+        <nav class="mt-6 flex items-center justify-center gap-2 text-sm text-primary-content/80" aria-label="Breadcrumb">
+          <a class="transition hover:text-primary-content" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Home</a>
+          <span>/</span>
+          <span class="text-primary-content">{{ page.link_text }}</span>
+        </nav>
+      </div>
+    </div>
+  </section>
 
-  <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
-    {%- for job in jobs -%}
-      {% render 'job_card', job: job %}
-    {%- else -%}
-      <div class="p-6 text-sm text-slate-500">No jobs yet.</div>
-    {%- endfor -%}
-  </div>
+  <section class="py-10 md:py-14">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="grid gap-8 lg:grid-cols-4">
+        <aside class="lg:col-span-1">
+          <div class="sticky top-24 rounded-2xl border border-base-300 bg-base-100 p-6">
+            <h2 class="text-lg font-bold text-base-content">Filters</h2>
+            <form class="mt-5 space-y-4" method="get" action="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">
+              <label class="block">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">Keyword</span>
+                <input class="form-input" type="text" name="keyword" value="{{ filter_keyword | escape }}" placeholder="Role or skill">
+              </label>
+              <label class="block">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">Location</span>
+                <select class="form-select" name="location">
+                  <option value="" {% if filter_location == blank %}selected{% endif %}>Any</option>
+                  {%- for v in location_options -%}
+                    {%- assign vv = v | strip -%}
+                    {%- if vv != blank -%}
+                      <option value="{{ vv | escape }}" {% if filter_location == vv %}selected{% endif %}>{{ vv }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">Job type</span>
+                <select class="form-select" name="employment_type">
+                  <option value="" {% if filter_employment_type == blank %}selected{% endif %}>Any</option>
+                  {%- for v in employment_type_options -%}
+                    {%- assign vv = v | strip -%}
+                    {%- if vv != blank -%}
+                      <option value="{{ vv | escape }}" {% if filter_employment_type == vv %}selected{% endif %}>{{ vv }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">Salary</span>
+                <select class="form-select" name="salary">
+                  <option value="" {% if filter_salary == blank %}selected{% endif %}>Any</option>
+                  {%- for v in salary_options -%}
+                    {%- assign vv = v | strip -%}
+                    {%- if vv != blank -%}
+                      <option value="{{ vv | escape }}" {% if filter_salary == vv %}selected{% endif %}>{{ vv }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">Experience</span>
+                <select class="form-select" name="experience_level">
+                  <option value="" {% if filter_experience_level == blank %}selected{% endif %}>Any</option>
+                  {%- for v in experience_level_options -%}
+                    {%- assign vv = v | strip -%}
+                    {%- if vv != blank -%}
+                      <option value="{{ vv | escape }}" {% if filter_experience_level == vv %}selected{% endif %}>{{ vv }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </label>
+              <div class="flex gap-2">
+                <button type="submit" class="btn btn-primary flex-1">Apply</button>
+                <a class="btn btn-ghost" href="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Reset</a>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <div class="lg:col-span-3">
+          <div class="mb-6 flex items-center justify-between gap-4">
+            <p class="text-sm text-base-content/70">Showing filtered roles in {{ page.link_text }}</p>
+          </div>
+
+          {%- assign matched_count = 0 -%}
+          <div class="space-y-4">
+            {%- for job in jobs -%}
+              {%- assign job_title = job.ext_info.title | default: job.settings.title | default: job.link_text -%}
+              {%- assign job_title_downcase = job_title | downcase -%}
+              {%- assign location = job.ext_info.location | default: job.settings.location -%}
+              {%- assign salary = job.ext_info.salary | default: job.settings.salary -%}
+              {%- assign employment_type = job.ext_info.employment_type | default: job.settings.employment_type -%}
+              {%- assign experience_level = job.settings.experience_level | default: job.ext_info.experience_level -%}
+              {%- assign posted_at = job.ext_info.date_posted | default: job.published_at | default: job.created_at -%}
+              {%- assign apply_url = job.settings.apply_url | default: '/s/apply' -%}
+              {%- assign skill_tags_raw = job.settings.skill_tags | default: '' -%}
+              {%- assign skill_tags = skill_tags_raw | split: ',' -%}
+              {%- assign is_matched = true -%}
+
+              {%- if filter_keyword != blank -%}
+                {%- unless job_title_downcase contains filter_keyword -%}
+                  {%- assign is_matched = false -%}
+                {%- endunless -%}
+              {%- endif -%}
+              {%- if filter_location != blank and location != filter_location -%}
+                {%- assign is_matched = false -%}
+              {%- endif -%}
+              {%- if filter_salary != blank and salary != filter_salary -%}
+                {%- assign is_matched = false -%}
+              {%- endif -%}
+              {%- if filter_employment_type != blank and employment_type != filter_employment_type -%}
+                {%- assign is_matched = false -%}
+              {%- endif -%}
+              {%- if filter_experience_level != blank and experience_level != filter_experience_level -%}
+                {%- assign is_matched = false -%}
+              {%- endif -%}
+
+              {%- if is_matched -%}
+                {%- assign matched_count = matched_count | plus: 1 -%}
+                <article class="group relative rounded-2xl border border-base-300 bg-base-100 p-6 transition hover:border-primary/40 hover:shadow-md">
+                  {%- if job.settings.featured -%}
+                    <div class="absolute -top-2.5 right-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-content">Featured</div>
+                  {%- endif -%}
+                  <div class="flex flex-wrap items-start justify-between gap-4">
+                    <div class="min-w-0">
+                      <h3 class="text-xl font-bold text-base-content transition group-hover:text-primary">
+                        <a href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ job_title }}</a>
+                      </h3>
+                      <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-base-content/70">
+                        {%- if location != blank -%}<span class="rounded-full bg-base-200 px-3 py-1">{{ location }}</span>{%- endif -%}
+                        {%- if salary != blank -%}<span class="rounded-full bg-primary/10 px-3 py-1 text-primary">{{ salary }}</span>{%- endif -%}
+                        {%- if employment_type != blank -%}<span class="rounded-full bg-base-200 px-3 py-1">{{ employment_type }}</span>{%- endif -%}
+                        {%- if experience_level != blank -%}<span class="rounded-full bg-secondary/15 px-3 py-1 text-secondary">{{ experience_level }}</span>{%- endif -%}
+                      </div>
+                      {%- if skill_tags_raw != blank -%}
+                        <div class="mt-3 flex flex-wrap gap-2">
+                          {%- for tag in skill_tags limit: 4 -%}
+                            {%- assign tag_text = tag | strip -%}
+                            {%- if tag_text != blank -%}
+                              <span class="rounded-md bg-base-200 px-2.5 py-1 text-xs font-medium text-base-content/80">{{ tag_text }}</span>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    <div class="text-right">
+                      <div class="text-xs text-base-content/60">{{ posted_at | date: "%b %d, %Y" }}</div>
+                      <div class="mt-3 flex gap-2">
+                        <a class="btn btn-sm btn-outline" href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">View</a>
+                        <a class="btn btn-sm btn-primary" href="{{ apply_url }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Apply</a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- if matched_count == 0 -%}
+            <div class="rounded-2xl border border-base-300 bg-base-100 p-8 text-center text-base-content/70">No jobs found for the selected filters.</div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 {% schema %}
   {
     "name": "Jobs Channel",
-    "description": "Job list page",
+    "description": "HireHub-inspired jobs channel list",
     "thumb_url": "images/theme/preview-index.png",
     "preview_image_urls": ["images/theme/preview-index.png"],
     "sub_page_templates": ["page"],

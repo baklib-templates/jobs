@@ -2,6 +2,7 @@ import * as Turbo from "@hotwired/turbo"
 import { Application } from "@hotwired/stimulus"
 import Alpine from "alpinejs"
 import collapse from "@alpinejs/collapse"
+import { initLucideIcons } from "./lucide_icons"
 
 window.Turbo = Turbo
 
@@ -20,3 +21,10 @@ Alpine.store("jobs", {
 
 Alpine.start()
 
+document.addEventListener("turbo:load", initLucideIcons)
+document.addEventListener("turbo:frame-render", initLucideIcons)
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initLucideIcons)
+} else {
+  initLucideIcons()
+}

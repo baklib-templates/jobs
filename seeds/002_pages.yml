@@ -1,5 +1,5 @@
 pages:
-  name: "首页"
+  name: "Home"
   slug: "index"
   template_name: "index"
 
@@ -9,7 +9,7 @@ pages:
       template_name: "channel"
       settings:
         title: "Jobs"
-        description: "精选职位列表（示例数据）"
+        description: "Curated openings (sample data)"
       children:
         - name: "Senior Software Engineer"
           slug: "senior-software-engineer"
@@ -21,15 +21,15 @@ pages:
             salary: "$75K - $100K"
             employment_type: "Full-time"
             apply_url: "/apply"
-            description: "负责核心产品的前端/全栈工程建设，推动交付与体验优化。"
+            description: "Own core product frontend and full-stack engineering with a focus on delivery quality and experience."
             content: |
               <h2>About the role</h2>
-              <p>你将参与核心业务的架构设计与工程落地，负责性能、可维护性与交付效率。</p>
+              <p>You will contribute to architecture decisions and delivery execution for core business products, with focus on performance and maintainability.</p>
               <h2>Responsibilities</h2>
               <ul>
-                <li>与产品/设计协作，推动高质量交付</li>
-                <li>建设工程化与组件化体系</li>
-                <li>参与性能与稳定性优化</li>
+                <li>Collaborate with product and design teams to ship high-quality releases</li>
+                <li>Build scalable engineering workflows and reusable component systems</li>
+                <li>Continuously improve performance and platform stability</li>
               </ul>
 
         - name: "Product Designer"
@@ -42,10 +42,10 @@ pages:
             salary: "$60K - $90K"
             employment_type: "Full-time"
             apply_url: "/apply"
-            description: "负责招聘门户与雇主品牌的体验与视觉体系。"
+            description: "Design end-to-end experiences and visual systems for the recruiting portal and employer brand."
             content: |
               <h2>What you’ll do</h2>
-              <p>与跨职能团队合作，完成从信息架构到 UI 细节的全链路设计。</p>
+              <p>Work with cross-functional teams to deliver full-cycle design, from information architecture to polished UI details.</p>
 
         - name: "Customer Support Specialist"
           slug: "customer-support-specialist"
@@ -57,11 +57,11 @@ pages:
             salary: "Negotiable"
             employment_type: "Contract"
             apply_url: "/apply"
-            description: "负责客户问题响应与知识库维护，提升满意度。"
+            description: "Handle customer issues and maintain the knowledge base to improve satisfaction."
             content: |
               <h2>Requirements</h2>
               <ul>
-                <li>良好的沟通能力与同理心</li>
-                <li>能独立推动问题闭环</li>
+                <li>Strong communication skills and empathy</li>
+                <li>Ability to independently resolve issues end to end</li>
               </ul>
 

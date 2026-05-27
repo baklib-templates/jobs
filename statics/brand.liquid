@@ -1,0 +1,165 @@
+<section class="py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <section class="prose max-w-none">
+      <h1>Brand Guide</h1>
+      <p>
+        This page is the theme's brand baseline and audit reference. The semantic color and sizing variables defined here directly affect how components render across the site.
+      </p>
+      <h2>How to adjust semantic tokens</h2>
+      <ul>
+        <li>Update semantic colors in the <code>@plugin "daisyui/theme"</code> block below via <code>--color-*</code>.</li>
+        <li>Use <code>--radius-*</code>, <code>--size-*</code>, and <code>--border</code> to tune corner radius, control scale, and border thickness.</li>
+        <li>Prefer semantic tokens only. Avoid named color scales and hard-coded color values in page templates.</li>
+      </ul>
+      <h2>Verification checklist after updates</h2>
+      <ol>
+        <li>Save this file and refresh the site preview.</li>
+        <li>Check the live preview section below for buttons and status badges.</li>
+        <li>Validate card contrast, text readability, and button accessibility on the home and channel pages.</li>
+        <li>Confirm visual hierarchy and interactive states are consistent in both light and dark contexts.</li>
+      </ol>
+    </section>
+
+    <!-- Brand live preview for semantic token rendering -->
+    <section class="not-prose space-y-6 rounded-box border border-base-300 bg-base-100 p-6 text-base-content">
+      <!-- Header area -->
+      <div class="space-y-2">
+        <p class="text-sm opacity-70">Brand Live Preview</p>
+        <h2 class="text-2xl font-semibold">Live semantic token preview</h2>
+        <p class="text-sm opacity-80">Use this area to quickly validate color roles, status palettes, and text hierarchy.</p>
+      </div>
+
+      <!-- Button examples -->
+      <div class="flex flex-wrap gap-3">
+        <button type="button" class="btn btn-primary">Primary Action</button>
+        <button type="button" class="btn btn-secondary">Secondary Action</button>
+      </div>
+
+      <!-- Status badge examples -->
+      <div class="flex flex-wrap gap-2">
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-error">Error</span>
+      </div>
+
+      <!-- Card and content example -->
+      <div class="card border border-base-300 bg-base-200">
+        <div class="card-body gap-3">
+          <h3 class="card-title">Brand Card Example</h3>
+          <p>
+            This sample text helps verify body readability on base surfaces. Highlighted information can combine
+            <span class="font-semibold text-primary">Primary</span>
+            and
+            <span class="font-semibold text-accent">Accent</span>
+            roles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="not-prose space-y-6 rounded-box border border-base-300 bg-base-100 p-6 text-base-content">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-semibold">Typography and component examples</h2>
+        <p class="text-sm text-base-content/70">
+          This section demonstrates common content structures and daisyUI components for fast readability checks after palette updates.
+        </p>
+      </div>
+
+      <div class="space-y-3 rounded-box border border-base-300 bg-base-200 p-5">
+        <h1 class="text-4xl font-bold">H1 Heading Example</h1>
+        <h2 class="text-3xl font-semibold">H2 Heading Example</h2>
+        <h3 class="text-2xl font-semibold">H3 Heading Example</h3>
+        <h4 class="text-xl font-medium">H4 Heading Example</h4>
+      </div>
+
+      <div class="space-y-4 rounded-box border border-base-300 bg-base-100 p-5">
+        <p class="text-base">
+          This is a regular paragraph sample to check body size, line height, and contrast against the surface.
+        </p>
+        <p class="text-sm text-base-content/70">
+          This is a secondary text sample for helper descriptions and supporting information.
+        </p>
+
+        <ul class="list-disc space-y-1 pl-5 text-base">
+          <li>Use list items for key points, steps, or feature highlights.</li>
+          <li>Keep each line concise for faster scanning.</li>
+          <li>Use inline code when important fields need emphasis.</li>
+        </ul>
+
+        <blockquote class="border-l-4 border-primary bg-base-200 px-4 py-3 text-sm text-base-content/80">
+          Tip: prefer semantic utility classes such as <code class="rounded bg-base-300 px-1">bg-primary</code> and
+          <code class="rounded bg-base-300 px-1">text-base-content</code>; avoid named color scales.
+        </blockquote>
+      </div>
+
+      <div class="space-y-3 rounded-box border border-base-300 bg-base-100 p-5">
+        <p class="text-sm">
+          Inline code example: <code class="rounded bg-base-200 px-1 py-0.5">site.settings.primary_color</code>
+        </p>
+        <pre class="overflow-x-auto rounded-box border border-base-300 bg-base-200 p-4 text-sm"><code>{% raw %}{% if page.settings.show_banner %}
+  <div class="alert alert-info">Sample notice banner</div>
+{% endif %}{% endraw %}</code></pre>
+      </div>
+
+      <div class="space-y-4 rounded-box border border-base-300 bg-base-100 p-5">
+        <div class="flex flex-wrap gap-3">
+          <button type="button" class="btn btn-primary">Primary button</button>
+          <button type="button" class="btn btn-outline">Secondary button</button>
+          <button type="button" class="btn btn-ghost">Subtle button</button>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="badge badge-primary">In progress</span>
+          <span class="badge badge-outline">Draft</span>
+          <span class="badge badge-success">Published</span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="alert alert-info"><span>Info: for lightweight announcements.</span></div>
+          <div class="alert alert-success"><span>Success: for positive confirmation states.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose max-w-none">
+      <!-- Brand baseline token definition for auditing -->
+      <pre class="language-css">
+    @plugin "daisyui/theme" {
+      name: "baklib";
+      default: false;
+      prefersdark: false;
+      color-scheme: "light";
+      --color-base-100: hsl(var(--theme-color-base-100));
+      --color-base-200: hsl(var(--theme-color-base-200));
+      --color-base-300: hsl(var(--theme-color-base-300));
+      --color-base-content: hsl(var(--theme-color-base-content));
+      --color-primary: hsl(var(--theme-color-primary));
+      --color-primary-content: hsl(var(--theme-color-primary-content));
+      --color-secondary: hsl(var(--theme-color-secondary));
+      --color-secondary-content: hsl(var(--theme-color-secondary-content));
+      --color-accent: hsl(var(--theme-color-accent));
+      --color-accent-content: hsl(var(--theme-color-accent-content));
+      --color-neutral: hsl(var(--theme-color-neutral));
+      --color-neutral-content: hsl(var(--theme-color-neutral-content));
+      --color-info: hsl(var(--theme-color-info));
+      --color-info-content: hsl(var(--theme-color-info-content));
+      --color-success: hsl(var(--theme-color-success));
+      --color-success-content: hsl(var(--theme-color-success-content));
+      --color-warning: hsl(var(--theme-color-warning));
+      --color-warning-content: hsl(var(--theme-color-warning-content));
+      --color-error: hsl(var(--theme-color-error));
+      --color-error-content: hsl(var(--theme-color-error-content));
+      --radius-selector: 2rem;
+      --radius-field: 0.5rem;
+      --radius-box: 1rem;
+      --size-selector: 0.25rem;
+      --size-field: 0.25rem;
+      --border: 2px;
+      --depth: 1;
+      --noise: 0;
+    }
+      </pre>
+    </section>
+  </div>
+</section>

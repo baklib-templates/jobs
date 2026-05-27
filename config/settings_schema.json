@@ -3,7 +3,7 @@
     "name": "theme_info",
     "theme_name": "jobs",
     "theme_label": "jobs",
-    "theme_description": "专业级企业雇主品牌与招聘门户。复刻硅谷顶级 Job Board 视觉范式，内置结构化招聘 Schema，支持一键发布职位、在线投递与简历收集，助力企业打造高转化率的人才引力场。",
+    "theme_description": "A professional employer-branding and recruiting portal with structured job schema, one-click publishing, online applications, and resume collection.",
     "theme_version": "0.0.1",
     "theme_syntax_version": "v2",
     "theme_scope": "cms",
@@ -16,24 +16,24 @@
       "images/theme/preview-page.png"
     ],
     "theme_languages": [
-      { "name": "中文简体", "value": "zh-CN" },
+      { "name": "Simplified Chinese", "value": "zh-CN" },
       { "name": "English", "value": "en" }
     ],
     "recommendations": {
       "color_schemas": {
-        "default": {
-          "name": "Teal / Orange",
+        "baklib": {
+          "name": "Baklib",
           "colors": {
-            "--theme-color-primary": "#0d9488",
-            "--theme-color-secondary": "#ea580c",
-            "--theme-color-accent": "#64748b",
-            "--theme-color-info": "#0ea5e9",
-            "--theme-color-success": "#22c55e",
-            "--theme-color-warning": "#f59e0b"
+            "--theme-color-primary": "#0F766E",
+            "--theme-color-secondary": "#C2410C",
+            "--theme-color-accent": "#0F172A",
+            "--theme-color-info": "#60A5FA",
+            "--theme-color-success": "#14B8A6",
+            "--theme-color-warning": "#FDBA74"
           }
         },
         "fashion": {
-          "name": "时尚",
+          "name": "Fashion",
           "colors": {
             "--theme-color-primary": "#3D50E0",
             "--theme-color-secondary": "#E91E63",
@@ -47,92 +47,140 @@
     }
   },
   {
-    "name": "站点设置",
+    "name": "Site Settings",
     "settings": [
       {
-        "id": "head_html",
-        "type": "html",
-        "label": "Head 自定义代码",
-        "rows": 8
-      },
-      {
-        "id": "brand_name",
-        "type": "text",
-        "label": "品牌名称",
-        "default": "JobBoard"
-      },
-      {
-        "id": "brand_slogan",
-        "type": "text",
-        "label": "品牌标语",
-        "default": "Join the best teams in the industry."
-      },
-      {
-        "id": "cta_label",
-        "type": "text",
-        "label": "右上角 CTA 文案",
-        "default": "Apply now"
-      },
-      {
-        "id": "press_logos",
-        "type": "code",
-        "language": "html",
-        "label": "Press logos（HTML）",
-        "info": "粘贴 Cruip JobBoard 的 press logos 区块 HTML（svg/img），将按原样渲染。",
-        "default": ""
-      },
-      {
-        "id": "hero_html",
-        "type": "html",
-        "label": "Hero 自定义 HTML",
-        "rows": 10,
-        "info": "可选：填写后将完全替换默认 Hero 区块（注意保留容器宽度/间距类名）。",
-        "default": "preset:hero.html"
-      },
-      {
-        "id": "hero_bg_url",
-        "type": "image_picker",
-        "ratio": "16:9",
-        "width": 300,
-        "label": "Hero 背景图（全局）",
-        "info": "可选：用于全站背景（body background-image）。建议上传与 hero 适配的宽幅图。",
-        "default": ""
-      },
-      {
         "type": "header",
-        "content": "职位字段下拉候选项（供 Job Post 引用）"
+        "content": "Job field dropdown options (used by Job Post)"
+      },
+      {
+        "id": "logo_url",
+        "type": "image_picker",
+        "label": "Logo",
+        "info": "Logo displayed in the top navigation. Use a brand-consistent icon."
       },
       {
         "id": "company_name_options",
         "type": "textarea",
-        "label": "Company options（每行一个值）",
-        "info": "用于 Job Post 的「公司」下拉候选项。每行一个选项值。",
+        "label": "Company options (one per line)",
+        "info": "Company dropdown options for Job Post. One option per line.",
         "rows": 6,
         "default": "Acme Inc.\nMedium Inc.\nBeta Labs"
       },
       {
         "id": "location_options",
         "type": "textarea",
-        "label": "Location options（每行一个值）",
-        "info": "用于 Job Post 的「地点」下拉候选项。每行一个选项值。",
+        "label": "Location options (one per line)",
+        "info": "Location dropdown options for Job Post. One option per line.",
         "rows": 6,
         "default": "Remote\nShanghai\nLondon\nShenzhen"
       },
       {
         "id": "salary_options",
         "type": "textarea",
-        "label": "Salary options（每行一个值）",
-        "info": "用于 Job Post 的「薪资」下拉候选项。每行一个选项值。",
+        "label": "Salary options (one per line)",
+        "info": "Salary dropdown options for Job Post. One option per line.",
         "rows": 6,
         "default": "Negotiable\n$60K - $90K\n$75K - $100K\n$100K - $170K"
       },
       {
         "id": "employment_type_options",
         "type": "textarea",
-        "label": "Employment type options（每行一个值）",
-        "info": "用于 Job Post 的「类型」下拉候选项。每行一个选项值。",
+        "label": "Employment type options (one per line)",
+        "info": "Employment type dropdown options for Job Post. One option per line.",
         "rows": 6,
         "default": "Full-time\nPart-time\nInternship\nContract"
+      }
+    ]
+  },
+  {
+    "name": "Site Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Apply page contact information"
+      },
+      {
+        "id": "apply_contact_email_label",
+        "type": "text",
+        "label": "Apply contact email label",
+        "default": "Email"
+      },
+      {
+        "id": "apply_contact_email",
+        "type": "text",
+        "label": "Apply contact email",
+        "default": "jobs@baklib.com"
+      },
+      {
+        "id": "apply_contact_phone_label",
+        "type": "text",
+        "label": "Apply contact phone label",
+        "default": "Phone"
+      },
+      {
+        "id": "apply_contact_phone",
+        "type": "text",
+        "label": "Apply contact phone",
+        "default": "+1-555-492-3847"
+      },
+      {
+        "id": "apply_contact_office_label",
+        "type": "text",
+        "label": "Apply contact office label",
+        "default": "Office"
+      },
+      {
+        "id": "apply_contact_office_line1",
+        "type": "text",
+        "label": "Apply contact office line 1",
+        "default": "200 Tech Boulevard"
+      },
+      {
+        "id": "apply_contact_office_line2",
+        "type": "text",
+        "label": "Apply contact office line 2",
+        "default": "San Francisco, CA 94105"
+      },
+      {
+        "id": "apply_contact_hours_label",
+        "type": "text",
+        "label": "Apply contact business hours label",
+        "default": "Business Hours"
+      },
+      {
+        "id": "apply_contact_hours_line1",
+        "type": "text",
+        "label": "Apply contact business hours line 1",
+        "default": "Mon - Fri: 9:00 AM - 6:00 PM PST"
+      },
+      {
+        "id": "apply_contact_hours_line2",
+        "type": "text",
+        "label": "Apply contact business hours line 2",
+        "default": "Sat - Sun: Closed"
+      },
+      {
+        "id": "head_html",
+        "type": "html",
+        "label": "Custom head code",
+        "rows": 8,
+        "info": "place any head code like google analytics here."
+      },
+      {
+        "id": "header_html",
+        "type": "html",
+        "label": "Header menu HTML",
+        "rows": 8,
+        "info": "Supports a list of <a> tags for desktop and mobile navigation.",
+        "default": "<a href=\"/s/about\">About</a><a href=\"/s/brand\">Brand</a><a href=\"/s/apply\">Apply</a>"
+      },
+      {
+        "id": "footer_html",
+        "type": "html",
+        "label": "Custom footer HTML",
+        "rows": 8,
+        "default": "<a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Terms</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Privacy</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Guidelines</a><a class=\"hover:text-base-content\" href=\"javascript:void(0)\">Why Choose Us?</a>"
       }
     ]
   }

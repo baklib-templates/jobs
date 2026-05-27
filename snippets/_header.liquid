@@ -1,34 +1,51 @@
-<header class="sticky top-0 z-40 bg-slate-50/90 backdrop-blur border-b border-slate-200">
+{%- capture default_header_html -%}
+<a href="/s/about">About</a><a href="/s/brand">Brand</a><a href="/s/apply">Apply</a>
+{%- endcapture -%}
+{%- assign header_html = site.settings.header_html | strip -%}
+{%- if header_html == blank -%}
+  {%- assign header_html = default_header_html -%}
+{%- endif -%}
+
+<header class="sticky top-0 z-40 bg-base-100/90 backdrop-blur border-b border-base-300">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="flex items-center justify-between h-16 md:h-20">
       <div class="shrink-0 mr-4 flex items-center gap-3">
-        <a class="inline-flex items-center gap-2" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance" aria-label="Home">
-          {%- assign brand_name = site.settings.brand_name | default: site.name -%}
-          {%- assign favicon_url = site.favicon_url | presence -%}
-          {%- if favicon_url -%}
-            <img class="h-9 w-9" src="{{ favicon_url }}" alt="{{ brand_name | escape }}" loading="eager" />
-          {%- else -%}
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-teal text-white font-bold">J</span>
-          {%- endif -%}
-          <span class="text-lg md:text-xl font-extrabold tracking-tight">{{ brand_name }}</span>
+        <a
+          href="{{ site.index_path }}"
+          class="flex min-w-0 flex-1 items-center gap-2 md:flex-none md:max-w-[min(50%,20rem)] md:gap-3"
+          aria-label="{{ site.name }}"
+        >
+          {% if site.settings.logo_url %}
+            <img
+              src="{{ site.settings.logo_url }}"
+              alt="{{ site.name }}"
+              class="h-8 w-auto max-w-full object-contain md:h-12"
+              loading="eager"
+            />
+          {% else %}
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-base-300 bg-base-200">
+              <img
+                src="{{ site.favicon_url }}"
+                alt=""
+                class="h-full w-full object-cover"
+              />
+            </span>
+            <span class="min-w-0 truncate text-base font-semibold tracking-tight text-base-content md:text-lg">{{ site.name }}</span>
+          {% endif %}
         </a>
       </div>
 
-      <nav class="flex grow">
-        <ul class="flex grow justify-end flex-wrap items-center gap-2">
-          <li class="hidden sm:block">
-            <a class="text-sm font-medium text-indigo-500 hover:underline px-3 py-2" href="javascript:void(0)">Sign in</a>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="btn btn-outline sm:hidden"
-              @click="$store.jobs.toggleMobileFilters()"
-            >
-              Filters
-            </button>
-          </li>
-        </ul>
+      <nav class="flex grow items-center justify-end gap-2">
+        <div class="hidden sm:flex items-center gap-1 [&>a]:inline-flex [&>a]:items-center [&>a]:rounded-btn [&>a]:px-3 [&>a]:py-2 [&>a]:text-sm [&>a]:font-medium [&>a]:text-base-content/80 [&>a]:transition-colors [&>a]:hover:text-base-content [&>a]:focus-visible:outline-none [&>a]:focus-visible:ring-2 [&>a]:focus-visible:ring-primary/40">
+          {{ header_html | raw }}
+        </div>
+
+        <details class="dropdown dropdown-end sm:hidden">
+          <summary class="btn btn-outline btn-sm">Menu</summary>
+          <div class="menu dropdown-content mt-3 w-52 rounded-box border border-base-300 bg-base-100 p-2 shadow-sm [&>a]:rounded-btn [&>a]:px-3 [&>a]:py-2 [&>a]:text-sm [&>a]:font-medium [&>a]:text-base-content/80 [&>a]:transition-colors [&>a]:hover:bg-base-200 [&>a]:hover:text-base-content">
+            {{ header_html | raw }}
+          </div>
+        </details>
       </nav>
     </div>
   </div>

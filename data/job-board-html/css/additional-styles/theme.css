@@ -49,3 +49,39 @@
     transform: rotate(135deg);
     transition: y 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), width 0.1s ease-out;
 }
+
+/* baklib theme variables (from daisyUI theme generator) */
+/* source: https://daisyui.com/theme-generator/#theme=eJyFk-tu4yAQhV_F8qrSrtQghpvxvg3GQ4PimAgcbXervvtimqRuqNqfzHc4c4bLSzubI7a_28EcJj-0j60NU4i7ZPdY6pN_2i-5vNu9gcEk3AGlGf1wnZOO30NWYDhMdv-zlw8NJZRqaBQQwX7di_lWTL8R2zAvOC-3DeKLDafojyb-XWNS1ymFNdv41aMkzHS8OFgmgNrPaJWp46RnaywGXDaSkl5sYxlrLx2pg46ZClWGvX4bkjdMdERLvbWb8bxEM93EDIqYi4YpQZSSn4i_HNvPLtzcNCW8Xw0BhM7tgagP3VdxlZd_symd85wprd1BDNqomlWe7HqotKfQAFdEd1vPPybOfn4qE42D6UTN6sdz9QSqZaPp1g9jDPGmVLzcJ-8aJgnnUCnrM5CkXARoyDfBCL-kjWb055Rfz4R2KR1YxOMWOY_TmOuUyDsyhOdch2s1-X-4NcoB5Qf27vQOhhBHLG1Pz6Uw4mnZr7ZlNQef1j9P82pEZ85THsmZKeFje4roMKb85g-X2ut_3VE5DQ */
+:root[data-theme="baklib"],
+[data-theme="baklib"] {
+    /* daisyUI theme meta: name=baklib, default=false, prefersdark=false */
+    color-scheme: light;
+    --color-base-100: #f7f5f3;
+    --color-base-200: oklch(95% 0.0081 61.42);
+    --color-base-300: oklch(90% 0.0081 61.42);
+    --color-base-content: oklch(40% 0.0081 61.42);
+    --color-primary: #0f766e;
+    --color-primary-content: #f7f5f3;
+    --color-secondary: #c2410c;
+    --color-secondary-content: oklch(73.92% 0.2135 50.94);
+    --color-accent: #0f172a;
+    --color-accent-content: oklch(98% 0.003 247.858);
+    --color-neutral: oklch(21% 0.034 264.665);
+    --color-neutral-content: #f7f5f3;
+    --color-info: oklch(80.39% 0.1148 241.68);
+    --color-info-content: oklch(30.39% 0.1148 241.68);
+    --color-success: #14b8a6;
+    --color-success-content: oklch(23.92% 0.0901 136.87);
+    --color-warning: #fdba74;
+    --color-warning-content: oklch(43.92% 0.1085 80);
+    --color-error: oklch(63% 0.237 25.331);
+    --color-error-content: oklch(35.1% 0.1814 22.37);
+    --radius-selector: 2rem;
+    --radius-field: 0.5rem;
+    --radius-box: 1rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 2px;
+    --depth: 1;
+    --noise: 0;
+}

@@ -1,9 +1,38 @@
-@config "../../tailwind.config.js";
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * daisyUI theme strategy: themes: false
+ * - All daisyUI color variables (--color-*) are injected at runtime via
+ *   layout/theme.liquid <head> <style> (rendered through snippets/_theme_runtime_colors.liquid)
+ *   from hsl(var(--theme-color-*)) — see Baklib brand spec.
+ * - This file only keeps non-customizable brand static tokens
+ *   (radius, size, border, depth, noise) and theme-level component layers.
+ */
+@plugin "daisyui" {
+  themes: false;
+  exclude: scrollbar, rootcolor;
+  logs: false;
+}
+
+/* Baklib brand static tokens (keep in sync with `themes/cms/blog/statics/brand.liquid`) */
+:root {
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@source "../../layout/*.liquid";
+@source "../../snippets/*.liquid";
+@source "../../statics/*.liquid";
+@source "../../templates/*.liquid";
+@source "../../src/javascripts/**/*.js";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer base {
   html {
@@ -14,27 +43,35 @@
 }
 
 @layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition;
-  }
-  .btn-primary {
-    @apply bg-brand-teal text-white hover:brightness-95;
-  }
-  .btn-secondary {
-    @apply bg-brand-orange text-white hover:brightness-95;
-  }
-  .btn-outline {
-    @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50;
-  }
-
-  .card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-soft;
+  /* Jobs-specific layout helpers (semantic-color only) */
+  .page-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
   .form-input,
   .form-select,
   .form-textarea {
-    @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20;
+    @apply w-full rounded-field border border-base-300 bg-base-100 px-3 py-2 text-sm text-base-content placeholder:text-base-content/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+
+  .job-card {
+    @apply flex flex-col gap-3 rounded-box border border-base-300 bg-base-100 p-5 transition-[border-color] duration-200 hover:border-primary/40;
+  }
+
+  .job-card__title {
+    @apply text-lg font-semibold leading-snug tracking-tight text-accent;
+  }
+
+  .job-card__meta {
+    @apply mt-auto pt-2 text-sm text-base-content/60;
   }
 }
 
+/* daisyUI `.input` reset (matches blog) */
+.input {
+  &:focus,
+  &:focus-within {
+    outline: none;
+  }
+  border: none;
+}

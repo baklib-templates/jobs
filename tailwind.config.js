@@ -6,19 +6,49 @@ module.exports = {
     "./templates/**/*.liquid",
     "./statics/**/*.liquid",
   ],
+  darkMode: "class",
   theme: {
     extend: {
-      colors: {
-        brand: {
-          teal: "#0d9488",
-          orange: "#ea580c",
-        },
+      colors: () => {
+        return {
+          slate: {
+            150: "#f7f7f7",
+          },
+          ...["primary", "secondary", "accent", "info", "success", "warning"].reduce((map, name) => {
+            return {
+              ...map,
+              [name]: {
+                DEFAULT: `hsl(var(--theme-color-${name}) / <alpha-value>)`,
+                lighten: `hsl(var(--theme-color-${name}-hsl-h) var(--theme-color-${name}-hsl-s) calc(var(--theme-color-${name}-hsl-l) + 15%))`,
+                darken: `hsl(var(--theme-color-${name}-hsl-h) var(--theme-color-${name}-hsl-s) calc(var(--theme-color-${name}-hsl-l) - 15%))`,
+                ...[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].reduce((map, lightness) => {
+                  return {
+                    ...map,
+                    [lightness]: `hsl(var(--theme-color-${name}-hsl-h) var(--theme-color-${name}-hsl-s) ${100 - (lightness / 10) * 0.8}%)`,
+                  }
+                }, {}),
+              },
+            }
+          }, {}),
+          error: {
+            DEFAULT: `hsl(355 75% var(--theme-color-primary-hsl-l) / <alpha-value>)`,
+            lighten: `hsl(355 75% calc(var(--theme-color-primary-hsl-l) + 15%))`,
+            darken: `hsl(355 75% calc(var(--theme-color-primary-hsl-l) - 15%))`,
+            ...[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].reduce((map, lightness) => {
+              return {
+                ...map,
+                [lightness]: `hsl(355 75% ${100 - (lightness / 10) * 0.8}%)`,
+              }
+            }, {}),
+          },
+        }
       },
-      boxShadow: {
-        soft: "0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06)",
+      spacing: {
+        4.5: "1.125rem",
+        5.5: "1.375rem",
+        18: "4.5rem",
       },
     },
   },
   plugins: [],
 }
-

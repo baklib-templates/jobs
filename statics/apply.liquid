@@ -1,30 +1,64 @@
-{%- assign index_page = site.pages['/'] -%}
+{%- assign apply_contact_email_label = site.settings.apply_contact_email_label | default: 'Email' -%}
+{%- assign apply_contact_email = site.settings.apply_contact_email | default: 'jobs@baklib.com' -%}
+{%- assign apply_contact_phone_label = site.settings.apply_contact_phone_label | default: 'Phone' -%}
+{%- assign apply_contact_phone = site.settings.apply_contact_phone | default: '+1-555-492-3847' -%}
+{%- assign apply_contact_office_label = site.settings.apply_contact_office_label | default: 'Office' -%}
+{%- assign apply_contact_office_line1 = site.settings.apply_contact_office_line1 | default: '200 Tech Boulevard' -%}
+{%- assign apply_contact_office_line2 = site.settings.apply_contact_office_line2 | default: 'San Francisco, CA 94105' -%}
+{%- assign apply_contact_hours_label = site.settings.apply_contact_hours_label | default: 'Business Hours' -%}
+{%- assign apply_contact_hours_line1 = site.settings.apply_contact_hours_line1 | default: 'Mon - Fri: 9:00 AM - 6:00 PM PST' -%}
+{%- assign apply_contact_hours_line2 = site.settings.apply_contact_hours_line2 | default: 'Sat - Sun: Closed' -%}
+{%- assign apply_default_feedback_type = site.plugins.feedback.useful_types | first -%}
+{%- assign apply_default_feedback_emoji = apply_default_feedback_type.emoji | default: '' -%}
 
 <main
-  class="flex min-h-[calc(100vh-80px)] py-12"
+  class="min-h-[calc(100vh-80px)]"
   x-data="{
     formData: {
-      company_name: '',
-      contact_email: '',
-      position: '',
-      role: 'Programming',
-      commitment: 'Full-time',
+      name: '',
+      contact: '',
       description: '',
-      salary: '',
-      addon_sticky: false,
-      addon_highlight: false
+      attachment: '',
+      jobContext: ''
     },
     errors: {},
     isSubmitting: false,
+    init() {
+      const queryParams = new URLSearchParams(window.location.search)
+      const fieldMappings = [
+        ['job_title', 'Job Title'],
+        ['location', 'Location'],
+        ['employment_type', 'Employment Type'],
+        ['experience_level', 'Experience Level'],
+        ['workplace_mode', 'Workplace Mode'],
+        ['department', 'Department'],
+        ['skill_tags', 'Skill Tags']
+      ]
+
+      const lines = fieldMappings
+        .map(([key, label]) => {
+          const value = queryParams.get(key)
+          return value ? `${label}: ${value}` : ''
+        })
+        .filter(Boolean)
+
+      this.formData.jobContext = lines.join('\n')
+
+      this.$nextTick(() => {
+        const formEl = this.$refs.submitBtn?.form
+        if (formEl) {
+          formEl.setAttribute('data-turbo', 'false')
+          formEl.setAttribute('data-turbo-frame', '_top')
+        }
+      })
+    },
     submitForm() {
       this.errors = {}
       this.isSubmitting = true
 
-      if (!this.formData.company_name) this.errors.company_name = 'Company name is required.'
-      if (!this.formData.contact_email) this.errors.contact_email = 'Email is required.'
-      else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(this.formData.contact_email)) this.errors.contact_email = 'Email is invalid.'
-      if (!this.formData.position) this.errors.position = 'Position name is required.'
-      if (!this.formData.description) this.errors.description = 'Job description is required.'
+      if (!this.formData.name) this.errors.name = 'Name is required.'
+      if (!this.formData.contact) this.errors.contact = 'Contact (email or phone) is required.'
+      if (!this.formData.description) this.errors.description = 'Description is required.'
 
       if (Object.keys(this.errors).length > 0) {
         this.isSubmitting = false
@@ -32,144 +66,162 @@
       }
 
       let lines = []
-      lines.push('【Jobs Apply】')
-      if (this.formData.company_name) lines.push('Company: ' + this.formData.company_name)
-      if (this.formData.contact_email) lines.push('Email: ' + this.formData.contact_email)
-      if (this.formData.position) lines.push('Position: ' + this.formData.position)
-      if (this.formData.role) lines.push('Role: ' + this.formData.role)
-      if (this.formData.commitment) lines.push('Commitment: ' + this.formData.commitment)
-      if (this.formData.salary) lines.push('Salary: ' + this.formData.salary)
-      if (this.formData.addon_sticky) lines.push('Add-on: Stick post (+$79)')
-      if (this.formData.addon_highlight) lines.push('Add-on: Highlight post (+$39)')
+      lines.push('[Jobs Apply]')
+      if (this.formData.jobContext) lines.push('Position Details:\n' + this.formData.jobContext)
+      if (this.formData.name) lines.push('Name: ' + this.formData.name)
+      if (this.formData.contact) lines.push('Contact: ' + this.formData.contact)
       if (this.formData.description) lines.push('Description:\\n' + this.formData.description)
+      if (this.formData.attachment) lines.push('Attachment: ' + this.formData.attachment)
 
       $refs.messageInput.value = lines.join('\\n')
       $refs.submitBtn.click()
 
+      const jobContext = this.formData.jobContext
       this.formData = {
-        company_name: '',
-        contact_email: '',
-        position: '',
-        role: 'Programming',
-        commitment: 'Full-time',
+        name: '',
+        contact: '',
         description: '',
-        salary: '',
-        addon_sticky: false,
-        addon_highlight: false
+        attachment: '',
+        jobContext: jobContext
       }
       this.isSubmitting = false
     }
   }"
 >
-  <div class="w-full">
-    <div class="mx-auto max-w-md px-6">
-      <div class="mb-10">
-        <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Apply now</h1>
-        <div class="text-slate-600">UI 复刻 Cruip JobBoard 的 post-a-job（暂不接提交逻辑）。</div>
-      </div>
-
-      {% form_tag 'feedback', page: index_page %}
-        <input value="/s/apply" autocomplete="off" type="hidden" name="feedback[page_path]">
-        <input type="hidden" name="feedback[message]" x-ref="messageInput">
-        <input type="hidden" name="feedback[useful_type]" value="💼">
-        <button type="submit" x-ref="submitBtn" style="display: none;"></button>
-
-        <form class="card p-6 space-y-6" @submit.prevent="submitForm">
-        <div>
-          <div class="text-base font-extrabold text-slate-900 mb-3"><span class="text-brand-teal">1.</span> Your company</div>
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="company_name">Company Name</label>
-              <input id="company_name" class="form-input" type="text" x-model="formData.company_name" placeholder="E.g., Acme Inc." />
-              <p x-show="errors.company_name" x-text="errors.company_name" class="mt-1 text-xs text-red-600"></p>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="contact_email">Contact Email</label>
-              <input id="contact_email" class="form-input" type="email" x-model="formData.contact_email" placeholder="name@company.com" />
-              <p x-show="errors.contact_email" x-text="errors.contact_email" class="mt-1 text-xs text-red-600"></p>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="company_logo">Company Logo (optional)</label>
-              <input id="company_logo" type="file" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-teal file:text-white hover:file:brightness-95 transition cursor-pointer" />
-            </div>
-          </div>
-        </div>
-
-        <div class="border-t border-slate-200 pt-6">
-          <div class="text-base font-extrabold text-slate-900 mb-3"><span class="text-brand-teal">2.</span> The role</div>
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="position">Position Name</label>
-              <input id="position" class="form-input" type="text" x-model="formData.position" placeholder="E.g., Senior Software Engineer" />
-              <p x-show="errors.position" x-text="errors.position" class="mt-1 text-xs text-red-600"></p>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="role">Role</label>
-              <select id="role" class="form-select" x-model="formData.role">
-                <option>Programming</option>
-                <option>Design</option>
-                <option>Management / Finance</option>
-                <option>Customer Support</option>
-                <option>Sales / Marketing</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="commitment">Commitment</label>
-              <select id="commitment" class="form-select" x-model="formData.commitment">
-                <option>Full-time</option>
-                <option>Part-time</option>
-                <option>Internship</option>
-                <option>Contract / Freelance</option>
-                <option>Co-founder</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="description">Job Description</label>
-              <textarea id="description" class="form-textarea" rows="4" x-model="formData.description"></textarea>
-              <p x-show="errors.description" x-text="errors.description" class="mt-1 text-xs text-red-600"></p>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-1" for="salary">Salary (optional)</label>
-              <input id="salary" class="form-input" type="text" x-model="formData.salary" placeholder="E.g., $100,000 - $170,000 USD" />
-            </div>
-          </div>
-        </div>
-
-        <div class="border-t border-slate-200 pt-6">
-          <div class="text-base font-extrabold text-slate-900 mb-3"><span class="text-brand-teal">3.</span> Select add-ons and pay</div>
-          <div class="space-y-3 text-sm text-slate-600">
-            <label class="card p-4 cursor-pointer flex items-start gap-3">
-              <input type="checkbox" class="mt-1" x-model="formData.addon_sticky" />
-              <div>
-                <div class="font-semibold text-slate-900">Stick your post to stay on top (+$79)</div>
-                <div class="text-slate-500">4x more views</div>
-              </div>
-            </label>
-            <label class="card p-4 cursor-pointer flex items-start gap-3">
-              <input type="checkbox" class="mt-1" x-model="formData.addon_highlight" />
-              <div>
-                <div class="font-semibold text-slate-900">Highlight your post (+$39)</div>
-                <div class="text-slate-500">Get noticed faster</div>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <div class="pt-2">
-          <button
-            type="button"
-            class="btn btn-secondary w-full"
-            @click="submitForm"
-            :disabled="isSubmitting"
-          >
-            <span x-show="!isSubmitting">Submit</span>
-            <span x-show="isSubmitting">Submitting...</span>
-          </button>
-          <p class="mt-3 text-xs text-slate-500 text-center">后续会接入 Baklib 表单与投递流程。</p>
-        </div>
-        </form>
-      {% endform_tag %}
+  <section class="bg-primary py-16 lg:py-24 text-primary-content">
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <h1 class="text-3xl font-bold sm:text-4xl lg:text-5xl">Apply for a Role</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-primary-content/80">
+        Share your hiring details and submit your application request. Our team will follow up shortly.
+      </p>
+      <nav class="mt-6 flex items-center justify-center gap-2 text-sm text-primary-content/70" aria-label="Breadcrumb">
+        <a href="/" class="transition-colors hover:text-primary-content">Home</a>
+        <span>/</span>
+        <span class="text-primary-content">Apply</span>
+      </nav>
     </div>
-  </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-12 lg:grid-cols-5">
+        <div class="lg:col-span-3">
+          <h2 class="text-2xl font-bold text-base-content">Submit Application Details</h2>
+          <p class="mt-2 text-base-content/70">
+            Complete the form below and we will contact you once your job submission is reviewed.
+          </p>
+
+          {% form_tag 'feedback', page: page %}
+            <input type="hidden" name="{{ form.feedback_message_field_name }}" x-ref="messageInput">
+            <input type="hidden" name="{{ form.feedback_emoji_field_name }}" value="{{ apply_default_feedback_emoji | escape_once }}">
+            <button type="submit" x-ref="submitBtn" class="hidden"></button>
+
+            <div class="mt-8 space-y-6 rounded-box border border-base-300 bg-base-100 p-6 sm:p-8">
+              <div>
+                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">0.</span> Position details from URL</div>
+                <div>
+                  <label class="mb-1 block text-sm font-semibold text-base-content" for="job-context">Job metadata</label>
+                  <textarea id="job-context" class="form-textarea" rows="6" x-model="formData.jobContext" readonly placeholder="No position parameters were provided in the URL."></textarea>
+                </div>
+              </div>
+              <div>
+                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">1.</span> Your details</div>
+                <div class="space-y-4">
+                  <div>
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="name">Name</label>
+                    <input id="name" class="form-input" type="text" x-model="formData.name" placeholder="Your name">
+                    <p x-show="errors.name" x-text="errors.name" class="mt-1 text-xs text-error"></p>
+                  </div>
+                  <div>
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="contact">Contact (email or phone)</label>
+                    <input id="contact" class="form-input" type="text" x-model="formData.contact" placeholder="name@example.com / +1 555 123 4567">
+                    <p x-show="errors.contact" x-text="errors.contact" class="mt-1 text-xs text-error"></p>
+                  </div>
+                  <div>
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="description">Description (short profile)</label>
+                    <textarea id="description" class="form-textarea" rows="4" x-model="formData.description" placeholder="Briefly introduce yourself"></textarea>
+                    <p x-show="errors.description" x-text="errors.description" class="mt-1 text-xs text-error"></p>
+                  </div>
+                  <div>
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="attachment">Attachment (resume link or portfolio)</label>
+                    <input id="attachment" class="form-input" type="url" x-model="formData.attachment" placeholder="https://your-portfolio.example.com">
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <button
+                  type="button"
+                  class="btn btn-secondary w-full"
+                  @click="submitForm"
+                  :disabled="isSubmitting"
+                >
+                  <span x-show="!isSubmitting">Submit</span>
+                  <span x-show="isSubmitting">Submitting...</span>
+                </button>
+                <p class="mt-3 text-center text-xs text-base-content/60">Your request will be sent through the existing application flow.</p>
+              </div>
+            </div>
+          {% endform_tag %}
+        </div>
+
+        <aside class="lg:col-span-2">
+          <h2 class="text-2xl font-bold text-base-content">Get in Touch</h2>
+          <p class="mt-2 text-base-content/70">
+            Need help before applying? Reach out and we will guide your submission.
+          </p>
+          <div class="mt-8 space-y-6 rounded-box border border-base-300 bg-base-100 p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-base-content">{{ apply_contact_email_label }}</h3>
+                <a href="mailto:{{ apply_contact_email }}" class="text-base-content/70 transition-colors hover:text-primary">{{ apply_contact_email }}</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-base-content">{{ apply_contact_phone_label }}</h3>
+                <a href="tel:{{ apply_contact_phone }}" class="text-base-content/70 transition-colors hover:text-primary">{{ apply_contact_phone }}</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-base-content">{{ apply_contact_office_label }}</h3>
+                <p class="text-base-content/70">{{ apply_contact_office_line1 }}</p>
+                <p class="text-base-content/70">{{ apply_contact_office_line2 }}</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-base-content">{{ apply_contact_hours_label }}</h3>
+                <p class="text-base-content/70">{{ apply_contact_hours_line1 }}</p>
+                <p class="text-base-content/70">{{ apply_contact_hours_line2 }}</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 </main>
 
