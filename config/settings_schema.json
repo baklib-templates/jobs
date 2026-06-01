@@ -13,8 +13,8 @@
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
       "images/theme/${lang}/cover.png",
-      "images/theme/${lang}/index_poster.png",
-      "images/theme/${lang}/page_poster.png"
+      "images/theme/${lang}/index.png",
+      "images/theme/${lang}/page.png"
     ],
     "theme_languages": [
       { "name": "简体中文", "value": "zh-CN" },
