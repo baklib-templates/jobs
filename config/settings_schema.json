@@ -12,8 +12,9 @@
     "theme_support_url": "https://help.baklib.cn/theme/jobs",
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
-      "images/theme/preview-index.png",
-      "images/theme/preview-page.png"
+      "images/theme/${lang}/cover.png",
+      "images/theme/${lang}/index_poster.png",
+      "images/theme/${lang}/page_poster.png"
     ],
     "theme_languages": [
       { "name": "简体中文", "value": "zh-CN" },
