@@ -1,11 +1,23 @@
-{%- assign apply_contact_email_label = site.settings.apply_contact_email_label | default: 'Email' -%}
+{%- assign apply_contact_email_label = site.settings.apply_contact_email_label | strip -%}
+{%- if apply_contact_email_label == blank -%}
+  {%- assign apply_contact_email_label = 'statics.apply.contact_defaults.email_label' | t -%}
+{%- endif -%}
 {%- assign apply_contact_email = site.settings.apply_contact_email | default: 'jobs@baklib.com' -%}
-{%- assign apply_contact_phone_label = site.settings.apply_contact_phone_label | default: 'Phone' -%}
+{%- assign apply_contact_phone_label = site.settings.apply_contact_phone_label | strip -%}
+{%- if apply_contact_phone_label == blank -%}
+  {%- assign apply_contact_phone_label = 'statics.apply.contact_defaults.phone_label' | t -%}
+{%- endif -%}
 {%- assign apply_contact_phone = site.settings.apply_contact_phone | default: '+1-555-492-3847' -%}
-{%- assign apply_contact_office_label = site.settings.apply_contact_office_label | default: 'Office' -%}
+{%- assign apply_contact_office_label = site.settings.apply_contact_office_label | strip -%}
+{%- if apply_contact_office_label == blank -%}
+  {%- assign apply_contact_office_label = 'statics.apply.contact_defaults.office_label' | t -%}
+{%- endif -%}
 {%- assign apply_contact_office_line1 = site.settings.apply_contact_office_line1 | default: '200 Tech Boulevard' -%}
 {%- assign apply_contact_office_line2 = site.settings.apply_contact_office_line2 | default: 'San Francisco, CA 94105' -%}
-{%- assign apply_contact_hours_label = site.settings.apply_contact_hours_label | default: 'Business Hours' -%}
+{%- assign apply_contact_hours_label = site.settings.apply_contact_hours_label | strip -%}
+{%- if apply_contact_hours_label == blank -%}
+  {%- assign apply_contact_hours_label = 'statics.apply.contact_defaults.hours_label' | t -%}
+{%- endif -%}
 {%- assign apply_contact_hours_line1 = site.settings.apply_contact_hours_line1 | default: 'Mon - Fri: 9:00 AM - 6:00 PM PST' -%}
 {%- assign apply_contact_hours_line2 = site.settings.apply_contact_hours_line2 | default: 'Sat - Sun: Closed' -%}
 {%- assign apply_default_feedback_type = site.plugins.feedback.useful_types | first -%}
@@ -26,13 +38,13 @@
     init() {
       const queryParams = new URLSearchParams(window.location.search)
       const fieldMappings = [
-        ['job_title', 'Job Title'],
-        ['location', 'Location'],
-        ['employment_type', 'Employment Type'],
-        ['experience_level', 'Experience Level'],
-        ['workplace_mode', 'Workplace Mode'],
-        ['department', 'Department'],
-        ['skill_tags', 'Skill Tags']
+        ['job_title', {{ 'statics.apply.fields.job_title' | t | json }}],
+        ['location', {{ 'statics.apply.fields.location' | t | json }}],
+        ['employment_type', {{ 'statics.apply.fields.employment_type' | t | json }}],
+        ['experience_level', {{ 'statics.apply.fields.experience_level' | t | json }}],
+        ['workplace_mode', {{ 'statics.apply.fields.workplace_mode' | t | json }}],
+        ['department', {{ 'statics.apply.fields.department' | t | json }}],
+        ['skill_tags', {{ 'statics.apply.fields.skill_tags' | t | json }}]
       ]
 
       const lines = fieldMappings
@@ -56,9 +68,9 @@
       this.errors = {}
       this.isSubmitting = true
 
-      if (!this.formData.name) this.errors.name = 'Name is required.'
-      if (!this.formData.contact) this.errors.contact = 'Contact (email or phone) is required.'
-      if (!this.formData.description) this.errors.description = 'Description is required.'
+      if (!this.formData.name) this.errors.name = {{ 'statics.apply.errors.name_required' | t | json }}
+      if (!this.formData.contact) this.errors.contact = {{ 'statics.apply.errors.contact_required' | t | json }}
+      if (!this.formData.description) this.errors.description = {{ 'statics.apply.errors.description_required' | t | json }}
 
       if (Object.keys(this.errors).length > 0) {
         this.isSubmitting = false
@@ -66,12 +78,12 @@
       }
 
       let lines = []
-      lines.push('[Jobs Apply]')
-      if (this.formData.jobContext) lines.push('Position Details:\n' + this.formData.jobContext)
-      if (this.formData.name) lines.push('Name: ' + this.formData.name)
-      if (this.formData.contact) lines.push('Contact: ' + this.formData.contact)
-      if (this.formData.description) lines.push('Description:\\n' + this.formData.description)
-      if (this.formData.attachment) lines.push('Attachment: ' + this.formData.attachment)
+      lines.push({{ 'statics.apply.feedback.prefix' | t | json }})
+      if (this.formData.jobContext) lines.push({{ 'statics.apply.feedback.position_details' | t | json }} + '\\n' + this.formData.jobContext)
+      if (this.formData.name) lines.push({{ 'statics.apply.feedback.name' | t | json }} + ' ' + this.formData.name)
+      if (this.formData.contact) lines.push({{ 'statics.apply.feedback.contact' | t | json }} + ' ' + this.formData.contact)
+      if (this.formData.description) lines.push({{ 'statics.apply.feedback.description' | t | json }} + '\\n' + this.formData.description)
+      if (this.formData.attachment) lines.push({{ 'statics.apply.feedback.attachment' | t | json }} + ' ' + this.formData.attachment)
 
       $refs.messageInput.value = lines.join('\\n')
       $refs.submitBtn.click()
@@ -90,14 +102,14 @@
 >
   <section class="bg-primary py-16 lg:py-24 text-primary-content">
     <div class="mx-auto max-w-6xl px-6 text-center">
-      <h1 class="text-3xl font-bold sm:text-4xl lg:text-5xl">Apply for a Role</h1>
+      <h1 class="text-3xl font-bold sm:text-4xl lg:text-5xl">{{ 'statics.apply.title' | t }}</h1>
       <p class="mx-auto mt-4 max-w-2xl text-primary-content/80">
-        Share your hiring details and submit your application request. Our team will follow up shortly.
+        {{ 'statics.apply.intro' | t }}
       </p>
       <nav class="mt-6 flex items-center justify-center gap-2 text-sm text-primary-content/70" aria-label="Breadcrumb">
-        <a href="/" class="transition-colors hover:text-primary-content">Home</a>
+        <a href="/" class="transition-colors hover:text-primary-content">{{ 'generic.home' | t }}</a>
         <span>/</span>
-        <span class="text-primary-content">Apply</span>
+        <span class="text-primary-content">{{ 'statics.apply.breadcrumb' | t }}</span>
       </nav>
     </div>
   </section>
@@ -106,9 +118,9 @@
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-5">
         <div class="lg:col-span-3">
-          <h2 class="text-2xl font-bold text-base-content">Submit Application Details</h2>
+          <h2 class="text-2xl font-bold text-base-content">{{ 'statics.apply.form_title' | t }}</h2>
           <p class="mt-2 text-base-content/70">
-            Complete the form below and we will contact you once your job submission is reviewed.
+            {{ 'statics.apply.form_intro' | t }}
           </p>
 
           {% form_tag 'feedback', page: page %}
@@ -118,33 +130,33 @@
 
             <div class="mt-8 space-y-6 rounded-box border border-base-300 bg-base-100 p-6 sm:p-8">
               <div>
-                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">0.</span> Position details from URL</div>
+                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">0.</span> {{ 'statics.apply.url_section_title' | t }}</div>
                 <div>
-                  <label class="mb-1 block text-sm font-semibold text-base-content" for="job-context">Job metadata</label>
-                  <textarea id="job-context" class="form-textarea" rows="6" x-model="formData.jobContext" readonly placeholder="No position parameters were provided in the URL."></textarea>
+                  <label class="mb-1 block text-sm font-semibold text-base-content" for="job-context">{{ 'statics.apply.job_metadata' | t }}</label>
+                  <textarea id="job-context" class="form-textarea" rows="6" x-model="formData.jobContext" readonly placeholder="{{ 'statics.apply.job_metadata_placeholder' | t }}"></textarea>
                 </div>
               </div>
               <div>
-                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">1.</span> Your details</div>
+                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">1.</span> {{ 'statics.apply.your_details' | t }}</div>
                 <div class="space-y-4">
                   <div>
-                    <label class="mb-1 block text-sm font-semibold text-base-content" for="name">Name</label>
-                    <input id="name" class="form-input" type="text" x-model="formData.name" placeholder="Your name">
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="name">{{ 'statics.apply.name' | t }}</label>
+                    <input id="name" class="form-input" type="text" x-model="formData.name" placeholder="{{ 'statics.apply.name_placeholder' | t }}">
                     <p x-show="errors.name" x-text="errors.name" class="mt-1 text-xs text-error"></p>
                   </div>
                   <div>
-                    <label class="mb-1 block text-sm font-semibold text-base-content" for="contact">Contact (email or phone)</label>
-                    <input id="contact" class="form-input" type="text" x-model="formData.contact" placeholder="name@example.com / +1 555 123 4567">
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="contact">{{ 'statics.apply.contact' | t }}</label>
+                    <input id="contact" class="form-input" type="text" x-model="formData.contact" placeholder="{{ 'statics.apply.contact_placeholder' | t }}">
                     <p x-show="errors.contact" x-text="errors.contact" class="mt-1 text-xs text-error"></p>
                   </div>
                   <div>
-                    <label class="mb-1 block text-sm font-semibold text-base-content" for="description">Description (short profile)</label>
-                    <textarea id="description" class="form-textarea" rows="4" x-model="formData.description" placeholder="Briefly introduce yourself"></textarea>
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="description">{{ 'statics.apply.description' | t }}</label>
+                    <textarea id="description" class="form-textarea" rows="4" x-model="formData.description" placeholder="{{ 'statics.apply.description_placeholder' | t }}"></textarea>
                     <p x-show="errors.description" x-text="errors.description" class="mt-1 text-xs text-error"></p>
                   </div>
                   <div>
-                    <label class="mb-1 block text-sm font-semibold text-base-content" for="attachment">Attachment (resume link or portfolio)</label>
-                    <input id="attachment" class="form-input" type="url" x-model="formData.attachment" placeholder="https://your-portfolio.example.com">
+                    <label class="mb-1 block text-sm font-semibold text-base-content" for="attachment">{{ 'statics.apply.attachment' | t }}</label>
+                    <input id="attachment" class="form-input" type="url" x-model="formData.attachment" placeholder="{{ 'statics.apply.attachment_placeholder' | t }}">
                   </div>
                 </div>
               </div>
@@ -156,19 +168,19 @@
                   @click="submitForm"
                   :disabled="isSubmitting"
                 >
-                  <span x-show="!isSubmitting">Submit</span>
-                  <span x-show="isSubmitting">Submitting...</span>
+                  <span x-show="!isSubmitting">{{ 'statics.apply.submit' | t }}</span>
+                  <span x-show="isSubmitting">{{ 'statics.apply.submitting' | t }}</span>
                 </button>
-                <p class="mt-3 text-center text-xs text-base-content/60">Your request will be sent through the existing application flow.</p>
+                <p class="mt-3 text-center text-xs text-base-content/60">{{ 'statics.apply.submit_hint' | t }}</p>
               </div>
             </div>
           {% endform_tag %}
         </div>
 
         <aside class="lg:col-span-2">
-          <h2 class="text-2xl font-bold text-base-content">Get in Touch</h2>
+          <h2 class="text-2xl font-bold text-base-content">{{ 'statics.apply.contact_title' | t }}</h2>
           <p class="mt-2 text-base-content/70">
-            Need help before applying? Reach out and we will guide your submission.
+            {{ 'statics.apply.contact_intro' | t }}
           </p>
           <div class="mt-8 space-y-6 rounded-box border border-base-300 bg-base-100 p-6 sm:p-8">
             <div class="flex items-start gap-4">

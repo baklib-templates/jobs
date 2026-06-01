@@ -4,7 +4,13 @@
   <template>
     <div class="fixed left-1/2 bottom-6 z-50 -translate-x-1/2" id="js--jobs-feedback-error" x-data="" x-init="setTimeout(() => { $el.remove() }, 5000)">
       <div class="card border border-error/30 bg-base-100 px-4 py-3 text-sm text-error">
-        <span class="font-semibold">{{ errors | default: 'Submit failed' }}</span>
+        <span class="font-semibold">
+          {%- if errors != blank -%}
+            {{ errors }}
+          {%- else -%}
+            {{ 'templates.feedback_toast.error' | t }}
+          {%- endif -%}
+        </span>
       </div>
     </div>
   </template>

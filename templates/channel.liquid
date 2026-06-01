@@ -8,6 +8,7 @@
 {%- assign salary_options = site.settings.salary_options | default: '' | newline_to_br | split: '<br />' -%}
 {%- assign employment_type_options = site.settings.employment_type_options | default: '' | newline_to_br | split: '<br />' -%}
 {%- assign experience_level_options = site.settings.experience_level_options | default: '' | newline_to_br | split: '<br />' -%}
+{%- assign channel_list_hint = 'templates.channel.showing_in' | t | replace: '{{ channel }}', page.link_text -%}
 
 <main class="grow">
   <section class="bg-primary py-14 md:py-20">
@@ -18,7 +19,7 @@
           <p class="mx-auto mt-4 max-w-2xl text-base text-primary-content/80 md:text-lg">{{ page.settings.description }}</p>
         {%- endif -%}
         <nav class="mt-6 flex items-center justify-center gap-2 text-sm text-primary-content/80" aria-label="Breadcrumb">
-          <a class="transition hover:text-primary-content" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Home</a>
+          <a class="transition hover:text-primary-content" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.home' | t }}</a>
           <span>/</span>
           <span class="text-primary-content">{{ page.link_text }}</span>
         </nav>
@@ -31,16 +32,16 @@
       <div class="grid gap-8 lg:grid-cols-4">
         <aside class="lg:col-span-1">
           <div class="sticky top-24 rounded-2xl border border-base-300 bg-base-100 p-6">
-            <h2 class="text-lg font-bold text-base-content">Filters</h2>
+            <h2 class="text-lg font-bold text-base-content">{{ 'templates.channel.filters' | t }}</h2>
             <form class="mt-5 space-y-4" method="get" action="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-base-content/75">Keyword</span>
-                <input class="form-input" type="text" name="keyword" value="{{ filter_keyword | escape }}" placeholder="Role or skill">
+                <span class="mb-1 block text-sm font-medium text-base-content/75">{{ 'templates.channel.keyword' | t }}</span>
+                <input class="form-input" type="text" name="keyword" value="{{ filter_keyword | escape }}" placeholder="{{ 'templates.channel.keyword_placeholder' | t }}">
               </label>
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-base-content/75">Location</span>
+                <span class="mb-1 block text-sm font-medium text-base-content/75">{{ 'templates.channel.location' | t }}</span>
                 <select class="form-select" name="location">
-                  <option value="" {% if filter_location == blank %}selected{% endif %}>Any</option>
+                  <option value="" {% if filter_location == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
                   {%- for v in location_options -%}
                     {%- assign vv = v | strip -%}
                     {%- if vv != blank -%}
@@ -50,9 +51,9 @@
                 </select>
               </label>
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-base-content/75">Job type</span>
+                <span class="mb-1 block text-sm font-medium text-base-content/75">{{ 'templates.channel.job_type' | t }}</span>
                 <select class="form-select" name="employment_type">
-                  <option value="" {% if filter_employment_type == blank %}selected{% endif %}>Any</option>
+                  <option value="" {% if filter_employment_type == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
                   {%- for v in employment_type_options -%}
                     {%- assign vv = v | strip -%}
                     {%- if vv != blank -%}
@@ -62,9 +63,9 @@
                 </select>
               </label>
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-base-content/75">Salary</span>
+                <span class="mb-1 block text-sm font-medium text-base-content/75">{{ 'templates.channel.salary' | t }}</span>
                 <select class="form-select" name="salary">
-                  <option value="" {% if filter_salary == blank %}selected{% endif %}>Any</option>
+                  <option value="" {% if filter_salary == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
                   {%- for v in salary_options -%}
                     {%- assign vv = v | strip -%}
                     {%- if vv != blank -%}
@@ -74,9 +75,9 @@
                 </select>
               </label>
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-base-content/75">Experience</span>
+                <span class="mb-1 block text-sm font-medium text-base-content/75">{{ 'templates.channel.experience' | t }}</span>
                 <select class="form-select" name="experience_level">
-                  <option value="" {% if filter_experience_level == blank %}selected{% endif %}>Any</option>
+                  <option value="" {% if filter_experience_level == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
                   {%- for v in experience_level_options -%}
                     {%- assign vv = v | strip -%}
                     {%- if vv != blank -%}
@@ -86,8 +87,8 @@
                 </select>
               </label>
               <div class="flex gap-2">
-                <button type="submit" class="btn btn-primary flex-1">Apply</button>
-                <a class="btn btn-ghost" href="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Reset</a>
+                <button type="submit" class="btn btn-primary flex-1">{{ 'templates.channel.apply_filters' | t }}</button>
+                <a class="btn btn-ghost" href="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.reset' | t }}</a>
               </div>
             </form>
           </div>
@@ -95,7 +96,7 @@
 
         <div class="lg:col-span-3">
           <div class="mb-6 flex items-center justify-between gap-4">
-            <p class="text-sm text-base-content/70">Showing filtered roles in {{ page.link_text }}</p>
+            <p class="text-sm text-base-content/70">{{ channel_list_hint }}</p>
           </div>
 
           {%- assign matched_count = 0 -%}
@@ -135,7 +136,7 @@
                 {%- assign matched_count = matched_count | plus: 1 -%}
                 <article class="group relative rounded-2xl border border-base-300 bg-base-100 p-6 transition hover:border-primary/40 hover:shadow-md">
                   {%- if job.settings.featured -%}
-                    <div class="absolute -top-2.5 right-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-content">Featured</div>
+                    <div class="absolute -top-2.5 right-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-content">{{ 'generic.featured' | t }}</div>
                   {%- endif -%}
                   <div class="flex flex-wrap items-start justify-between gap-4">
                     <div class="min-w-0">
@@ -162,8 +163,8 @@
                     <div class="text-right">
                       <div class="text-xs text-base-content/60">{{ posted_at | date: "%b %d, %Y" }}</div>
                       <div class="mt-3 flex gap-2">
-                        <a class="btn btn-sm btn-outline" href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">View</a>
-                        <a class="btn btn-sm btn-primary" href="{{ apply_url }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Apply</a>
+                        <a class="btn btn-sm btn-outline" href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'templates.channel.view' | t }}</a>
+                        <a class="btn btn-sm btn-primary" href="{{ apply_url }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.apply' | t }}</a>
                       </div>
                     </div>
                   </div>
@@ -172,7 +173,7 @@
             {%- endfor -%}
           </div>
           {%- if matched_count == 0 -%}
-            <div class="rounded-2xl border border-base-300 bg-base-100 p-8 text-center text-base-content/70">No jobs found for the selected filters.</div>
+            <div class="rounded-2xl border border-base-300 bg-base-100 p-8 text-center text-base-content/70">{{ 'templates.channel.empty' | t }}</div>
           {%- endif -%}
         </div>
       </div>
@@ -182,14 +183,14 @@
 
 {% schema %}
   {
-    "name": "Jobs Channel",
-    "description": "HireHub-inspired jobs channel list",
+    "name": "t:schema.templates.channel.name",
+    "description": "t:schema.templates.channel.description",
     "thumb_url": "images/theme/${lang}/channel.png",
     "preview_image_urls": ["images/theme/${lang}/channel.png"],
     "sub_page_templates": ["page"],
     "settings": [
-      { "id": "title", "type": "text", "label": "Title" },
-      { "id": "description", "type": "textarea", "label": "Description" }
+      { "id": "title", "type": "text", "label": "t:schema.templates.channel.settings.title.label" },
+      { "id": "description", "type": "textarea", "label": "t:schema.templates.channel.settings.description.label" }
     ]
   }
 {% endschema %}

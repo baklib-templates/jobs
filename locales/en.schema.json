@@ -1,0 +1,156 @@
+{
+  "theme_label": "Jobs",
+  "theme_description": "A professional employer-branding and recruiting portal with structured job schema, one-click publishing, online applications, and resume collection.",
+  "job_post_settings": {
+    "name": "Job Post Settings",
+    "header_options": "Job field dropdown options (used by Job Post)",
+    "settings": {
+      "logo_url": {
+        "label": "Logo",
+        "info": "Logo displayed in the top navigation. Use a brand-consistent icon."
+      },
+      "company_name_options": {
+        "label": "Company options (one per line)",
+        "info": "Company dropdown options for Job Post. One option per line."
+      },
+      "location_options": {
+        "label": "Location options (one per line)",
+        "info": "Location dropdown options for Job Post. One option per line."
+      },
+      "salary_options": {
+        "label": "Salary options (one per line)",
+        "info": "Salary dropdown options for Job Post. One option per line."
+      },
+      "employment_type_options": {
+        "label": "Employment type options (one per line)",
+        "info": "Employment type dropdown options for Job Post. One option per line."
+      }
+    }
+  },
+  "apply_contact_settings": {
+    "name": "Apply Contact Settings",
+    "header_contact": "Apply page contact information",
+    "settings": {
+      "apply_contact_email_label": {
+        "label": "Apply contact email label",
+        "default": "Email"
+      },
+      "apply_contact_email": {
+        "label": "Apply contact email"
+      },
+      "apply_contact_phone_label": {
+        "label": "Apply contact phone label",
+        "default": "Phone"
+      },
+      "apply_contact_phone": {
+        "label": "Apply contact phone"
+      },
+      "apply_contact_office_label": {
+        "label": "Apply contact office label",
+        "default": "Office"
+      },
+      "apply_contact_office_line1": {
+        "label": "Apply contact office line 1"
+      },
+      "apply_contact_office_line2": {
+        "label": "Apply contact office line 2"
+      },
+      "apply_contact_hours_label": {
+        "label": "Apply contact business hours label",
+        "default": "Business Hours"
+      },
+      "apply_contact_hours_line1": {
+        "label": "Apply contact business hours line 1"
+      },
+      "apply_contact_hours_line2": {
+        "label": "Apply contact business hours line 2"
+      },
+      "head_html": {
+        "label": "Custom head code",
+        "info": "Place any head code like Google Analytics here."
+      },
+      "header_html": {
+        "label": "Header menu HTML",
+        "info": "Supports a list of <a> tags for desktop and mobile navigation."
+      },
+      "footer_html": {
+        "label": "Custom footer HTML"
+      }
+    }
+  },
+  "templates": {
+    "index": {
+      "name": "Jobs Index",
+      "description": "HireHub-inspired jobs home layout",
+      "settings": {
+        "hero_title": {
+          "label": "Hero title",
+          "default": "Find your next opportunity"
+        },
+        "hero_description": {
+          "label": "Hero description",
+          "default": "Explore curated roles with transparent salary, role type, and hiring expectations."
+        },
+        "hero_bg_url": {
+          "label": "Hero background image (global)",
+          "info": "Optional: used as the site-wide background image. Upload a wide image that fits the hero area."
+        }
+      }
+    },
+    "page": {
+      "name": "Job Post",
+      "description": "Single job detail page",
+      "header_basic": "Basic information",
+      "header_content": "Content blocks",
+      "settings": {
+        "location": {
+          "label": "Location",
+          "info": "Options from site setting: location_options."
+        },
+        "employment_type": {
+          "label": "Employment type",
+          "info": "Options from site setting: employment_type_options."
+        },
+        "salary": {
+          "label": "Salary range",
+          "info": "Options from site setting: salary_options."
+        },
+        "workplace_mode": {
+          "label": "Workplace mode",
+          "choices": {
+            "on_site": "On-site",
+            "hybrid": "Hybrid",
+            "remote": "Remote"
+          }
+        },
+        "featured": {
+          "label": "Featured role"
+        },
+        "skill_tags": {
+          "label": "Skill tags (one per line)"
+        },
+        "responsibilities": {
+          "label": "Responsibilities"
+        },
+        "requirements": {
+          "label": "Requirements"
+        },
+        "content": {
+          "label": "Full job description"
+        }
+      }
+    },
+    "channel": {
+      "name": "Jobs Channel",
+      "description": "HireHub-inspired jobs channel list",
+      "settings": {
+        "title": {
+          "label": "Title"
+        },
+        "description": {
+          "label": "Description"
+        }
+      }
+    }
+  }
+}

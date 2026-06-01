@@ -10,7 +10,7 @@
     {% for item in breadcrumb %}
       <li class="{% if forloop.last %}text-primary{% else %}text-base-content/60{% endif %}">
         {% if forloop.last %}
-          <span class="text-primary">Content</span>
+          <span class="text-primary">{{ 'generic.breadcrumb_current' | t }}</span>
         {% else %}
           {% if item.path %}
             <a href="{{ item.path }}">{{ item.link_text }}</a>

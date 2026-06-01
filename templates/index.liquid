@@ -34,6 +34,14 @@
 {%- assign location_options = site.settings.location_options | default: '' | newline_to_br | split: '<br />' -%}
 {%- assign employment_type_options = site.settings.employment_type_options | default: '' | newline_to_br | split: '<br />' -%}
 {%- assign hero_bg_url = page.settings.hero_bg_url | default: '' | strip -%}
+{%- assign hero_title = page.settings.hero_title | strip -%}
+{%- if hero_title == blank -%}
+  {%- assign hero_title = 'templates.index.hero.default_title' | t -%}
+{%- endif -%}
+{%- assign hero_description = page.settings.hero_description | strip -%}
+{%- if hero_description == blank -%}
+  {%- assign hero_description = 'templates.index.hero.default_description' | t -%}
+{%- endif -%}
 
 <main class="grow">
   <section
@@ -45,22 +53,22 @@
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mx-auto max-w-3xl text-center">
         <h1 class="text-4xl font-extrabold tracking-tight text-primary-content md:text-6xl">
-          {{ page.settings.hero_title | default: 'Find your next opportunity' }}
+          {{ hero_title }}
         </h1>
         <p class="mx-auto mt-5 max-w-2xl text-base text-primary-content/80 md:text-lg">
-          {{ page.settings.hero_description | default: 'Explore curated roles with transparent salary, role type, and hiring expectations.' }}
+          {{ hero_description }}
         </p>
       </div>
       <div class="mx-auto mt-10 max-w-5xl rounded-2xl border border-primary-content/20 bg-base-100/95 p-4 md:p-6">
         <form class="grid gap-3 md:grid-cols-5" method="get" action="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">
           <label class="md:col-span-2">
-            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">Keyword</span>
-            <input class="form-input" type="text" name="keyword" value="{{ filter_keyword | escape }}" placeholder="Role or skill">
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">{{ 'templates.index.filters.keyword' | t }}</span>
+            <input class="form-input" type="text" name="keyword" value="{{ filter_keyword | escape }}" placeholder="{{ 'templates.index.filters.keyword_placeholder' | t }}">
           </label>
           <label>
-            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">Location</span>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">{{ 'templates.index.filters.location' | t }}</span>
             <select class="form-select" name="location">
-              <option value="" {% if filter_location == blank %}selected{% endif %}>Any</option>
+              <option value="" {% if filter_location == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
               {%- for v in location_options -%}
                 {%- assign vv = v | strip -%}
                 {%- if vv != blank -%}
@@ -70,9 +78,9 @@
             </select>
           </label>
           <label>
-            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">Type</span>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-base-content/70">{{ 'templates.index.filters.type' | t }}</span>
             <select class="form-select" name="employment_type">
-              <option value="" {% if filter_employment_type == blank %}selected{% endif %}>Any</option>
+              <option value="" {% if filter_employment_type == blank %}selected{% endif %}>{{ 'generic.any' | t }}</option>
               {%- for v in employment_type_options -%}
                 {%- assign vv = v | strip -%}
                 {%- if vv != blank -%}
@@ -82,8 +90,8 @@
             </select>
           </label>
           <div class="flex items-end gap-2">
-            <button type="submit" class="btn btn-primary flex-1">Search</button>
-            <a class="btn btn-ghost" href="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Reset</a>
+            <button type="submit" class="btn btn-primary flex-1">{{ 'generic.search' | t }}</button>
+            <a class="btn btn-ghost" href="{{ page.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.reset' | t }}</a>
           </div>
         </form>
       </div>
@@ -94,8 +102,8 @@
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 class="text-3xl font-extrabold text-base-content">Latest jobs</h2>
-          <p class="mt-2 text-sm text-base-content/70">Browse opportunities by role type, compensation, and experience.</p>
+          <h2 class="text-3xl font-extrabold text-base-content">{{ 'templates.index.latest_jobs' | t }}</h2>
+          <p class="mt-2 text-sm text-base-content/70">{{ 'templates.index.latest_jobs_hint' | t }}</p>
         </div>
         {%- assign channels_count = channels | size -%}
         {%- if channels_count > 0 -%}
@@ -128,7 +136,7 @@
                 {%- assign skill_tags = skill_tags_raw | split: ',' -%}
                 <article class="group relative rounded-2xl border border-base-300 bg-base-100 p-6 transition hover:border-primary/40 hover:shadow-md">
                   {%- if job.settings.featured -%}
-                    <div class="absolute -top-2.5 right-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-content">Featured</div>
+                    <div class="absolute -top-2.5 right-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-content">{{ 'generic.featured' | t }}</div>
                   {%- endif -%}
                   <div class="flex flex-wrap items-start justify-between gap-4">
                     <div class="min-w-0">
@@ -155,13 +163,13 @@
                     <div class="text-right">
                       <div class="text-xs text-base-content/60">{{ posted_at | date: "%b %d, %Y" }}</div>
                       <div class="mt-3 flex gap-2">
-                        <a class="btn btn-sm btn-outline" href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">View Details</a>
+                        <a class="btn btn-sm btn-outline" href="{{ job.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'templates.index.view_details' | t }}</a>
                       </div>
                     </div>
                   </div>
                 </article>
               {%- else -%}
-                <div class="rounded-2xl border border-base-300 bg-base-100 p-8 text-center text-base-content/70">No jobs found for the selected filters.</div>
+                <div class="rounded-2xl border border-base-300 bg-base-100 p-8 text-center text-base-content/70">{{ 'templates.index.empty' | t }}</div>
               {%- endfor -%}
             </div>
             <div class="py-8">
@@ -175,21 +183,21 @@
 
 {% schema %}
   {
-    "name": "Jobs Index",
-    "description": "HireHub-inspired jobs home layout",
+    "name": "t:schema.templates.index.name",
+    "description": "t:schema.templates.index.description",
     "thumb_url": "images/theme/${lang}/index.png",
     "preview_image_urls": ["images/theme/${lang}/index.png"],
     "sub_page_templates": ["channel"],
     "settings": [
-      { "id": "hero_title", "type": "text", "label": "Hero title", "default": "Find your next opportunity" },
-      { "id": "hero_description", "type": "textarea", "label": "Hero description", "default": "Explore curated roles with transparent salary, role type, and hiring expectations." },
+      { "id": "hero_title", "type": "text", "label": "t:schema.templates.index.settings.hero_title.label", "default": "t:schema.templates.index.settings.hero_title.default" },
+      { "id": "hero_description", "type": "textarea", "label": "t:schema.templates.index.settings.hero_description.label", "default": "t:schema.templates.index.settings.hero_description.default" },
       {
         "id": "hero_bg_url",
         "type": "image_picker",
         "ratio": "16:9",
         "width": 300,
-        "label": "Hero background image (global)",
-        "info": "Optional: used as the site-wide background image. Upload a wide image that fits the hero area.",
+        "label": "t:schema.templates.index.settings.hero_bg_url.label",
+        "info": "t:schema.templates.index.settings.hero_bg_url.info",
         "default": ""
       }
     ]

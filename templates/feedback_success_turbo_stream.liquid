@@ -4,7 +4,13 @@
   <template>
     <div class="fixed left-1/2 bottom-6 z-50 -translate-x-1/2" id="js--jobs-feedback-toast" x-data="" x-init="setTimeout(() => { $el.remove() }, 4000)">
       <div class="card border border-success/30 bg-base-100 px-4 py-3 text-sm text-base-content">
-        <span class="font-semibold">{{ success | default: 'Submitted successfully' }}</span>
+        <span class="font-semibold">
+          {%- if success != blank -%}
+            {{ success }}
+          {%- else -%}
+            {{ 'templates.feedback_toast.success' | t }}
+          {%- endif -%}
+        </span>
       </div>
     </div>
   </template>

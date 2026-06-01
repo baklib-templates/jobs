@@ -1,5 +1,5 @@
 {%- capture default_header_html -%}
-<a href="/s/about">About</a><a href="/s/brand">Brand</a><a href="/s/apply">Apply</a>
+<a href="/s/about">{{ 'generic.about' | t }}</a><a href="/s/brand">{{ 'generic.brand' | t }}</a><a href="/s/apply">{{ 'generic.apply_nav' | t }}</a>
 {%- endcapture -%}
 {%- assign header_html = site.settings.header_html | strip -%}
 {%- if header_html == blank -%}
@@ -42,7 +42,7 @@
         </div>
 
         <details class="dropdown dropdown-end sm:hidden">
-          <summary class="btn btn-outline btn-sm">Menu</summary>
+          <summary class="btn btn-outline btn-sm">{{ 'generic.menu' | t }}</summary>
           <div class="menu dropdown-content mt-3 w-52 rounded-box border border-base-300 bg-base-100 p-2 shadow-sm [&>a]:rounded-btn [&>a]:px-3 [&>a]:py-2 [&>a]:text-sm [&>a]:font-medium [&>a]:text-base-content/80 [&>a]:transition-colors [&>a]:hover:bg-base-200 [&>a]:hover:text-base-content">
             {{ header_html | raw }}
           </div>

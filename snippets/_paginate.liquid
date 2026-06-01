@@ -16,7 +16,7 @@
         {% comment %} Previous page {% endcomment %}
         <a data-turbo-action="advance" {% if paginate.prev_page %}href="{{ paginate.url_for[paginate.prev_page] }}"{% else %}disabled{% endif %} class="btn btn-soft btn-circle shadow">
           <i class="ri-arrow-left-s-line"></i>
-          <span class="sr-only">{{ "paginate.previous" | t: 'Previous page'  }}</span>
+          <span class="sr-only">{{ 'paginate.previous' | t }}</span>
         </a>
         {% comment %} Page numbers {% endcomment %}
         {% for i in paginate.series %}
@@ -35,24 +35,23 @@
         {% comment %} Next page {% endcomment %}
         <a data-turbo-action="advance" {% if paginate.next_page %}href="{{ paginate.url_for[paginate.next_page] }}"{% else %}disabled{% endif %} class="btn btn-soft btn-circle shadow">
           <i class="ri-arrow-right-s-line"></i>
-          <span class="sr-only">{{ "paginate.next" | t: 'Next page'  }}</span>
+          <span class="sr-only">{{ 'paginate.next' | t }}</span>
         </a>
       </div>
       <div class="text-center text-base-content/50 mt-4">
-        {{ "paginate.showing" | t: "Showing" }}
-        <span class="font-medium">{{paginate.from}}</span>
-        ~
-        <span class="font-medium">{{paginate.to}}</span>
-        {{ "paginate.records" | t: "records," }}
-        {{ "paginate.records" | t: "total" }}
-        <span class="font-medium">{{paginate.total_count}}</span>
-        {{ "paginate.records" | t: "records" }}
+        {{ 'paginate.showing' | t }}
+        <span class="font-medium">{{ paginate.from }}</span>
+        {{ 'paginate.range_separator' | t }}
+        <span class="font-medium">{{ paginate.to }}</span>
+        {{ 'paginate.of' | t }}
+        <span class="font-medium">{{ paginate.total_count }}</span>
+        {{ 'paginate.records' | t }}
       </div>
     {% else %}
       <div class="text-center text-base-content/50 mt-4">
-        {{ "paginate.records" | t: "Total" }}
-          <span class="font-medium">{{paginate.total_count}}</span>
-        {{ "paginate.records" | t: "records" }}
+        {{ 'paginate.total' | t }}
+        <span class="font-medium">{{ paginate.total_count }}</span>
+        {{ 'paginate.records' | t }}
       </div>
     {% endif %}
   </div>

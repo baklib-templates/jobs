@@ -2,8 +2,8 @@
   {
     "name": "theme_info",
     "theme_name": "jobs",
-    "theme_label": "jobs",
-    "theme_description": "A professional employer-branding and recruiting portal with structured job schema, one-click publishing, online applications, and resume collection.",
+    "theme_label": "t:schema.theme_label",
+    "theme_description": "t:schema.theme_description",
     "theme_version": "0.0.1",
     "theme_syntax_version": "v2",
     "theme_scope": "cms",
@@ -14,7 +14,8 @@
     "theme_preview_images": [
       "images/theme/${lang}/cover.png",
       "images/theme/${lang}/index.png",
-      "images/theme/${lang}/page.png"
+      "images/theme/${lang}/page.png",
+      "images/theme/${lang}/channel.png"
     ],
     "theme_languages": [
       { "name": "简体中文", "value": "zh-CN" },
@@ -48,142 +49,141 @@
     }
   },
   {
-    "name": "Job Post Settings",
+    "name": "t:schema.job_post_settings.name",
     "settings": [
       {
         "type": "header",
-        "content": "Job field dropdown options (used by Job Post)"
+        "content": "t:schema.job_post_settings.header_options"
       },
       {
         "id": "logo_url",
         "type": "image_picker",
-        "label": "Logo",
-        "info": "Logo displayed in the top navigation. Use a brand-consistent icon."
+        "label": "t:schema.job_post_settings.settings.logo_url.label",
+        "info": "t:schema.job_post_settings.settings.logo_url.info"
       },
       {
         "id": "company_name_options",
         "type": "textarea",
-        "label": "Company options (one per line)",
-        "info": "Company dropdown options for Job Post. One option per line.",
+        "label": "t:schema.job_post_settings.settings.company_name_options.label",
+        "info": "t:schema.job_post_settings.settings.company_name_options.info",
         "rows": 6,
         "default": "Acme Inc.\nMedium Inc.\nBeta Labs"
       },
       {
         "id": "location_options",
         "type": "textarea",
-        "label": "Location options (one per line)",
-        "info": "Location dropdown options for Job Post. One option per line.",
+        "label": "t:schema.job_post_settings.settings.location_options.label",
+        "info": "t:schema.job_post_settings.settings.location_options.info",
         "rows": 6,
         "default": "Remote\nShanghai\nLondon\nShenzhen"
       },
       {
         "id": "salary_options",
         "type": "textarea",
-        "label": "Salary options (one per line)",
-        "info": "Salary dropdown options for Job Post. One option per line.",
+        "label": "t:schema.job_post_settings.settings.salary_options.label",
+        "info": "t:schema.job_post_settings.settings.salary_options.info",
         "rows": 6,
         "default": "Negotiable\n$60K - $90K\n$75K - $100K\n$100K - $170K"
       },
       {
         "id": "employment_type_options",
         "type": "textarea",
-        "label": "Employment type options (one per line)",
-        "info": "Employment type dropdown options for Job Post. One option per line.",
+        "label": "t:schema.job_post_settings.settings.employment_type_options.label",
+        "info": "t:schema.job_post_settings.settings.employment_type_options.info",
         "rows": 6,
         "default": "Full-time\nPart-time\nInternship\nContract"
       }
     ]
   },
   {
-    "name": "Apply Contact Settings",
+    "name": "t:schema.apply_contact_settings.name",
     "settings": [
       {
         "type": "header",
-        "content": "Apply page contact information"
+        "content": "t:schema.apply_contact_settings.header_contact"
       },
       {
         "id": "apply_contact_email_label",
         "type": "text",
-        "label": "Apply contact email label",
-        "default": "Email"
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_email_label.label",
+        "default": "t:schema.apply_contact_settings.settings.apply_contact_email_label.default"
       },
       {
         "id": "apply_contact_email",
         "type": "text",
-        "label": "Apply contact email",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_email.label",
         "default": "jobs@baklib.com"
       },
       {
         "id": "apply_contact_phone_label",
         "type": "text",
-        "label": "Apply contact phone label",
-        "default": "Phone"
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_phone_label.label",
+        "default": "t:schema.apply_contact_settings.settings.apply_contact_phone_label.default"
       },
       {
         "id": "apply_contact_phone",
         "type": "text",
-        "label": "Apply contact phone",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_phone.label",
         "default": "+1-555-492-3847"
       },
       {
         "id": "apply_contact_office_label",
         "type": "text",
-        "label": "Apply contact office label",
-        "default": "Office"
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_office_label.label",
+        "default": "t:schema.apply_contact_settings.settings.apply_contact_office_label.default"
       },
       {
         "id": "apply_contact_office_line1",
         "type": "text",
-        "label": "Apply contact office line 1",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_office_line1.label",
         "default": "200 Tech Boulevard"
       },
       {
         "id": "apply_contact_office_line2",
         "type": "text",
-        "label": "Apply contact office line 2",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_office_line2.label",
         "default": "San Francisco, CA 94105"
       },
       {
         "id": "apply_contact_hours_label",
         "type": "text",
-        "label": "Apply contact business hours label",
-        "default": "Business Hours"
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_hours_label.label",
+        "default": "t:schema.apply_contact_settings.settings.apply_contact_hours_label.default"
       },
       {
         "id": "apply_contact_hours_line1",
         "type": "text",
-        "label": "Apply contact business hours line 1",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_hours_line1.label",
         "default": "Mon - Fri: 9:00 AM - 6:00 PM PST"
       },
       {
         "id": "apply_contact_hours_line2",
         "type": "text",
-        "label": "Apply contact business hours line 2",
+        "label": "t:schema.apply_contact_settings.settings.apply_contact_hours_line2.label",
         "default": "Sat - Sun: Closed"
       },
       {
         "id": "head_html",
         "type": "html",
-        "label": "Custom head code",
+        "label": "t:schema.apply_contact_settings.settings.head_html.label",
         "rows": 8,
-        "info": "place any head code like google analytics here."
+        "info": "t:schema.apply_contact_settings.settings.head_html.info"
       },
       {
         "id": "header_html",
         "type": "html",
-        "label": "Header menu HTML",
+        "label": "t:schema.apply_contact_settings.settings.header_html.label",
         "rows": 8,
-        "info": "Supports a list of <a> tags for desktop and mobile navigation.",
+        "info": "t:schema.apply_contact_settings.settings.header_html.info",
         "default": "preset:header_html"
       },
       {
         "id": "footer_html",
         "type": "html",
-        "label": "Custom footer HTML",
+        "label": "t:schema.apply_contact_settings.settings.footer_html.label",
         "rows": 8,
         "default": "preset:footer_html"
       }
     ]
   }
 ]
-

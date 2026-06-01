@@ -1,0 +1,168 @@
+{
+  "generic": {
+    "home": "首页",
+    "menu": "菜单",
+    "any": "不限",
+    "search": "搜索",
+    "reset": "重置",
+    "apply": "申请",
+    "featured": "精选",
+    "breadcrumb_current": "内容",
+    "about": "关于",
+    "brand": "品牌",
+    "apply_nav": "申请",
+    "copyright": "保留所有权利"
+  },
+  "snippets": {
+    "job_card": {
+      "company": "公司",
+      "apply_now": "立即申请 →"
+    }
+  },
+  "paginate": {
+    "showing": "当前显示",
+    "range_separator": "至",
+    "of": "共",
+    "records": "条",
+    "total": "共",
+    "previous": "上一页",
+    "next": "下一页"
+  },
+  "templates": {
+    "index": {
+      "hero": {
+        "default_title": "发现你的下一份机会",
+        "default_description": "浏览精选职位，薪资、用工类型与招聘要求一目了然。"
+      },
+      "filters": {
+        "keyword": "关键词",
+        "keyword_placeholder": "职位或技能",
+        "location": "地点",
+        "type": "类型"
+      },
+      "latest_jobs": "最新职位",
+      "latest_jobs_hint": "按职位类型、薪酬与经验浏览机会。",
+      "view_details": "查看详情",
+      "empty": "没有符合筛选条件的职位。"
+    },
+    "page": {
+      "apply_now": "立即申请",
+      "responsibilities": "岗位职责",
+      "requirements": "任职要求",
+      "job_description": "职位描述",
+      "posted": "发布日期",
+      "location": "工作地点",
+      "salary": "薪资",
+      "employment": "用工类型",
+      "workplace": "办公方式",
+      "skills": "技能标签",
+      "related_jobs": "相关职位",
+      "view_role": "查看职位",
+      "no_related": "暂无相关职位。"
+    },
+    "channel": {
+      "filters": "筛选",
+      "keyword": "关键词",
+      "keyword_placeholder": "职位或技能",
+      "location": "地点",
+      "job_type": "职位类型",
+      "salary": "薪资",
+      "experience": "经验",
+      "showing_in": "正在显示 {{ channel }} 下的筛选结果",
+      "view": "查看",
+      "apply_filters": "应用筛选",
+      "empty": "没有符合筛选条件的职位。"
+    },
+    "feedback_success": {
+      "title": "提交成功",
+      "message": "我们已收到你的申请信息。",
+      "back_home": "返回首页"
+    },
+    "feedback_error": {
+      "title": "提交失败",
+      "message": "请稍后再试。",
+      "back_form": "返回表单"
+    },
+    "feedback_toast": {
+      "success": "提交成功",
+      "error": "提交失败"
+    }
+  },
+  "statics": {
+    "about": {
+      "title": "关于 {{ site_name }}",
+      "intro": "我们打造聚焦的招聘体验，帮助候选人与招聘团队更快对接，并清晰了解岗位预期。",
+      "mission_badge": "我们的使命",
+      "mission_title": "连接人才与合适的团队",
+      "mission_p1": "本站面向单一招聘主体设计，每个职位结构化展示，便于对比与行动。",
+      "mission_p2": "薪资区间、用工类型、地点与经验要求始终可见，帮助求职者更有把握地决策。",
+      "stat_openings": "在招职位",
+      "stat_response": "平均响应",
+      "stat_completion": "职位信息完整度",
+      "stat_platform": "单一雇主专注",
+      "values_title": "我们的价值观",
+      "values_intro": "塑造招聘体验的原则。",
+      "value_clarity_title": "清晰优先",
+      "value_clarity_body": "每个岗位都提供透明信息与预期成果。",
+      "value_speed_title": "高效且审慎",
+      "value_speed_body": "在降低摩擦的同时保持审慎评估。",
+      "value_fit_title": "双向契合",
+      "value_fit_body": "我们追求团队与候选人长期的相互契合。",
+      "cta_title": "准备好申请了吗？",
+      "cta_body": "浏览最新职位，几分钟内完成申请。",
+      "cta_button": "浏览职位"
+    },
+    "apply": {
+      "title": "申请职位",
+      "intro": "填写申请信息并提交，我们的团队将尽快与你联系。",
+      "breadcrumb": "申请",
+      "form_title": "提交申请信息",
+      "form_intro": "请完成下方表单，我们会在审核后与你联系。",
+      "url_section_title": "来自链接的职位信息",
+      "job_metadata": "职位元数据",
+      "job_metadata_placeholder": "链接中未包含职位参数。",
+      "your_details": "你的信息",
+      "name": "姓名",
+      "name_placeholder": "你的姓名",
+      "contact": "联系方式（邮箱或电话）",
+      "contact_placeholder": "name@example.com / +86 138 0000 0000",
+      "description": "简介（个人简述）",
+      "description_placeholder": "简要介绍你自己",
+      "attachment": "附件（简历链接或作品集）",
+      "attachment_placeholder": "https://your-portfolio.example.com",
+      "submit": "提交",
+      "submitting": "提交中…",
+      "submit_hint": "你的请求将通过现有申请流程发送。",
+      "contact_title": "联系我们",
+      "contact_intro": "申请前需要帮助？联系我们，我们会协助你完成提交。",
+      "contact_defaults": {
+        "email_label": "邮箱",
+        "phone_label": "电话",
+        "office_label": "办公地址",
+        "hours_label": "营业时间"
+      },
+      "errors": {
+        "name_required": "请填写姓名。",
+        "contact_required": "请填写联系方式（邮箱或电话）。",
+        "description_required": "请填写简介。"
+      },
+      "fields": {
+        "job_title": "职位名称",
+        "location": "工作地点",
+        "employment_type": "用工类型",
+        "experience_level": "经验要求",
+        "workplace_mode": "办公方式",
+        "department": "部门",
+        "skill_tags": "技能标签"
+      },
+      "feedback": {
+        "prefix": "[职位申请]",
+        "position_details": "职位信息：",
+        "name": "姓名：",
+        "contact": "联系方式：",
+        "description": "简介：",
+        "attachment": "附件："
+      }
+    }
+  }
+}

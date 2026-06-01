@@ -1,14 +1,16 @@
+{%- assign about_title = 'statics.about.title' | t | replace: '{{ site_name }}', site.name -%}
+
 <main class="grow">
   <section class="bg-primary py-16 md:py-24">
     <div class="mx-auto max-w-6xl px-4 text-center sm:px-6">
-      <h1 class="text-4xl font-extrabold text-primary-content md:text-5xl">About {{ site.name }}</h1>
+      <h1 class="text-4xl font-extrabold text-primary-content md:text-5xl">{{ about_title }}</h1>
       <p class="mx-auto mt-4 max-w-2xl text-base text-primary-content/80 md:text-lg">
-        We build a focused hiring experience that helps candidates and hiring teams connect faster with clear role expectations.
+        {{ 'statics.about.intro' | t }}
       </p>
       <nav class="mt-6 flex items-center justify-center gap-2 text-sm text-primary-content/80" aria-label="Breadcrumb">
-        <a class="transition hover:text-primary-content" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Home</a>
+        <a class="transition hover:text-primary-content" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.home' | t }}</a>
         <span>/</span>
-        <span class="text-primary-content">About</span>
+        <span class="text-primary-content">{{ 'generic.about' | t }}</span>
       </nav>
     </div>
   </section>
@@ -16,32 +18,32 @@
   <section class="py-14 md:py-20">
     <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
       <div>
-        <div class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">Our mission</div>
-        <h2 class="mt-4 text-3xl font-extrabold text-base-content md:text-4xl">Connecting talent with the right team</h2>
+        <div class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">{{ 'statics.about.mission_badge' | t }}</div>
+        <h2 class="mt-4 text-3xl font-extrabold text-base-content md:text-4xl">{{ 'statics.about.mission_title' | t }}</h2>
         <p class="mt-4 text-base text-base-content/75">
-          We designed this careers site for one hiring organization, so every listing is structured, easy to compare, and actionable.
+          {{ 'statics.about.mission_p1' | t }}
         </p>
         <p class="mt-3 text-base text-base-content/75">
-          Salary ranges, role type, location, and experience level are always visible to help applicants decide with confidence.
+          {{ 'statics.about.mission_p2' | t }}
         </p>
       </div>
       <div class="rounded-2xl border border-base-300 bg-base-100 p-8">
         <div class="grid gap-5 sm:grid-cols-2">
           <div class="rounded-xl bg-base-200 p-4">
             <div class="text-2xl font-extrabold text-base-content">120+</div>
-            <div class="mt-1 text-sm text-base-content/70">Published openings</div>
+            <div class="mt-1 text-sm text-base-content/70">{{ 'statics.about.stat_openings' | t }}</div>
           </div>
           <div class="rounded-xl bg-base-200 p-4">
             <div class="text-2xl font-extrabold text-base-content">48h</div>
-            <div class="mt-1 text-sm text-base-content/70">Average response</div>
+            <div class="mt-1 text-sm text-base-content/70">{{ 'statics.about.stat_response' | t }}</div>
           </div>
           <div class="rounded-xl bg-base-200 p-4">
             <div class="text-2xl font-extrabold text-base-content">95%</div>
-            <div class="mt-1 text-sm text-base-content/70">Role detail completion</div>
+            <div class="mt-1 text-sm text-base-content/70">{{ 'statics.about.stat_completion' | t }}</div>
           </div>
           <div class="rounded-xl bg-base-200 p-4">
             <div class="text-2xl font-extrabold text-base-content">1 platform</div>
-            <div class="mt-1 text-sm text-base-content/70">Single employer focus</div>
+            <div class="mt-1 text-sm text-base-content/70">{{ 'statics.about.stat_platform' | t }}</div>
           </div>
         </div>
       </div>
@@ -51,21 +53,21 @@
   <section class="bg-base-200/70 py-14 md:py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl font-extrabold text-base-content md:text-4xl">Our values</h2>
-        <p class="mt-3 text-base text-base-content/70">Principles that shape our hiring experience.</p>
+        <h2 class="text-3xl font-extrabold text-base-content md:text-4xl">{{ 'statics.about.values_title' | t }}</h2>
+        <p class="mt-3 text-base text-base-content/70">{{ 'statics.about.values_intro' | t }}</p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         <article class="rounded-2xl border border-base-300 bg-base-100 p-6">
-          <h3 class="text-lg font-bold text-base-content">Clarity first</h3>
-          <p class="mt-2 text-sm text-base-content/75">Every role includes transparent details and expected outcomes.</p>
+          <h3 class="text-lg font-bold text-base-content">{{ 'statics.about.value_clarity_title' | t }}</h3>
+          <p class="mt-2 text-sm text-base-content/75">{{ 'statics.about.value_clarity_body' | t }}</p>
         </article>
         <article class="rounded-2xl border border-base-300 bg-base-100 p-6">
-          <h3 class="text-lg font-bold text-base-content">Speed with quality</h3>
-          <p class="mt-2 text-sm text-base-content/75">We reduce friction while preserving thoughtful evaluation.</p>
+          <h3 class="text-lg font-bold text-base-content">{{ 'statics.about.value_speed_title' | t }}</h3>
+          <p class="mt-2 text-sm text-base-content/75">{{ 'statics.about.value_speed_body' | t }}</p>
         </article>
         <article class="rounded-2xl border border-base-300 bg-base-100 p-6">
-          <h3 class="text-lg font-bold text-base-content">Mutual fit</h3>
-          <p class="mt-2 text-sm text-base-content/75">Our goal is long-term fit for both the team and applicants.</p>
+          <h3 class="text-lg font-bold text-base-content">{{ 'statics.about.value_fit_title' | t }}</h3>
+          <p class="mt-2 text-sm text-base-content/75">{{ 'statics.about.value_fit_body' | t }}</p>
         </article>
       </div>
     </div>
@@ -73,11 +75,11 @@
 
   <section class="py-14 md:py-20">
     <div class="mx-auto max-w-4xl rounded-2xl border border-primary/20 bg-primary px-6 py-12 text-center sm:px-10">
-      <h2 class="text-3xl font-extrabold text-primary-content md:text-4xl">Ready to apply?</h2>
+      <h2 class="text-3xl font-extrabold text-primary-content md:text-4xl">{{ 'statics.about.cta_title' | t }}</h2>
       <p class="mx-auto mt-3 max-w-2xl text-base text-primary-content/80">
-        Browse our latest jobs and submit your application in minutes.
+        {{ 'statics.about.cta_body' | t }}
       </p>
-      <a class="btn btn-secondary mt-8" href="/jobs" data-turbo-frame="main-content-frame" data-turbo-action="advance">Explore openings</a>
+      <a class="btn btn-secondary mt-8" href="/jobs" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'statics.about.cta_button' | t }}</a>
     </div>
   </section>
 </main>

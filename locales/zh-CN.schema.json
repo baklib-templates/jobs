@@ -1,0 +1,156 @@
+{
+  "theme_label": "Jobs",
+  "theme_description": "专业的雇主品牌与招聘门户，支持结构化职位字段、一键发布、在线申请与简历收集。",
+  "job_post_settings": {
+    "name": "职位发布设置",
+    "header_options": "职位字段下拉选项（供职位详情页使用）",
+    "settings": {
+      "logo_url": {
+        "label": "Logo",
+        "info": "显示在顶部导航的 Logo，请使用与品牌一致的图标。"
+      },
+      "company_name_options": {
+        "label": "公司选项（每行一项）",
+        "info": "职位详情页公司下拉选项，每行一项。"
+      },
+      "location_options": {
+        "label": "地点选项（每行一项）",
+        "info": "职位详情页地点下拉选项，每行一项。"
+      },
+      "salary_options": {
+        "label": "薪资选项（每行一项）",
+        "info": "职位详情页薪资下拉选项，每行一项。"
+      },
+      "employment_type_options": {
+        "label": "用工类型选项（每行一项）",
+        "info": "职位详情页用工类型下拉选项，每行一项。"
+      }
+    }
+  },
+  "apply_contact_settings": {
+    "name": "申请页联系信息",
+    "header_contact": "申请页联系信息",
+    "settings": {
+      "apply_contact_email_label": {
+        "label": "联系邮箱标签",
+        "default": "邮箱"
+      },
+      "apply_contact_email": {
+        "label": "联系邮箱"
+      },
+      "apply_contact_phone_label": {
+        "label": "联系电话标签",
+        "default": "电话"
+      },
+      "apply_contact_phone": {
+        "label": "联系电话"
+      },
+      "apply_contact_office_label": {
+        "label": "办公地址标签",
+        "default": "办公地址"
+      },
+      "apply_contact_office_line1": {
+        "label": "办公地址第一行"
+      },
+      "apply_contact_office_line2": {
+        "label": "办公地址第二行"
+      },
+      "apply_contact_hours_label": {
+        "label": "营业时间标签",
+        "default": "营业时间"
+      },
+      "apply_contact_hours_line1": {
+        "label": "营业时间第一行"
+      },
+      "apply_contact_hours_line2": {
+        "label": "营业时间第二行"
+      },
+      "head_html": {
+        "label": "自定义 head 代码",
+        "info": "可放置 Google Analytics 等 head 内嵌代码。"
+      },
+      "header_html": {
+        "label": "顶部导航 HTML",
+        "info": "支持一组 <a> 标签，用于桌面与移动端导航。"
+      },
+      "footer_html": {
+        "label": "自定义页脚 HTML"
+      }
+    }
+  },
+  "templates": {
+    "index": {
+      "name": "招聘首页",
+      "description": "HireHub 风格招聘首页布局",
+      "settings": {
+        "hero_title": {
+          "label": "主视觉标题",
+          "default": "发现你的下一份机会"
+        },
+        "hero_description": {
+          "label": "主视觉描述",
+          "default": "浏览精选职位，薪资、用工类型与招聘要求一目了然。"
+        },
+        "hero_bg_url": {
+          "label": "主视觉背景图（全站）",
+          "info": "可选：作为全站主视觉背景，请上传适配主视觉区域的宽图。"
+        }
+      }
+    },
+    "page": {
+      "name": "职位详情",
+      "description": "单个职位详情页",
+      "header_basic": "基本信息",
+      "header_content": "内容区块",
+      "settings": {
+        "location": {
+          "label": "工作地点",
+          "info": "选项来自站点设置 location_options。"
+        },
+        "employment_type": {
+          "label": "用工类型",
+          "info": "选项来自站点设置 employment_type_options。"
+        },
+        "salary": {
+          "label": "薪资区间",
+          "info": "选项来自站点设置 salary_options。"
+        },
+        "workplace_mode": {
+          "label": "办公方式",
+          "choices": {
+            "on_site": "现场办公",
+            "hybrid": "混合办公",
+            "remote": "远程办公"
+          }
+        },
+        "featured": {
+          "label": "精选职位"
+        },
+        "skill_tags": {
+          "label": "技能标签（每行一项）"
+        },
+        "responsibilities": {
+          "label": "岗位职责"
+        },
+        "requirements": {
+          "label": "任职要求"
+        },
+        "content": {
+          "label": "完整职位描述"
+        }
+      }
+    },
+    "channel": {
+      "name": "招聘频道",
+      "description": "HireHub 风格招聘频道列表",
+      "settings": {
+        "title": {
+          "label": "标题"
+        },
+        "description": {
+          "label": "描述"
+        }
+      }
+    }
+  }
+}

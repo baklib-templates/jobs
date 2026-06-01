@@ -1,0 +1,168 @@
+{
+  "generic": {
+    "home": "Home",
+    "menu": "Menu",
+    "any": "Any",
+    "search": "Search",
+    "reset": "Reset",
+    "apply": "Apply",
+    "featured": "Featured",
+    "breadcrumb_current": "Content",
+    "about": "About",
+    "brand": "Brand",
+    "apply_nav": "Apply",
+    "copyright": "All rights reserved"
+  },
+  "snippets": {
+    "job_card": {
+      "company": "Company",
+      "apply_now": "Apply now →"
+    }
+  },
+  "paginate": {
+    "showing": "Showing",
+    "range_separator": "to",
+    "of": "of",
+    "records": "records",
+    "total": "Total",
+    "previous": "Previous page",
+    "next": "Next page"
+  },
+  "templates": {
+    "index": {
+      "hero": {
+        "default_title": "Find your next opportunity",
+        "default_description": "Explore curated roles with transparent salary, role type, and hiring expectations."
+      },
+      "filters": {
+        "keyword": "Keyword",
+        "keyword_placeholder": "Role or skill",
+        "location": "Location",
+        "type": "Type"
+      },
+      "latest_jobs": "Latest jobs",
+      "latest_jobs_hint": "Browse opportunities by role type, compensation, and experience.",
+      "view_details": "View Details",
+      "empty": "No jobs found for the selected filters."
+    },
+    "page": {
+      "apply_now": "Apply now",
+      "responsibilities": "Responsibilities",
+      "requirements": "Requirements",
+      "job_description": "Job description",
+      "posted": "Posted",
+      "location": "Location",
+      "salary": "Salary",
+      "employment": "Employment",
+      "workplace": "Workplace",
+      "skills": "Skills",
+      "related_jobs": "Related jobs",
+      "view_role": "View role",
+      "no_related": "No related jobs yet."
+    },
+    "channel": {
+      "filters": "Filters",
+      "keyword": "Keyword",
+      "keyword_placeholder": "Role or skill",
+      "location": "Location",
+      "job_type": "Job type",
+      "salary": "Salary",
+      "experience": "Experience",
+      "showing_in": "Showing filtered roles in {{ channel }}",
+      "view": "View",
+      "apply_filters": "Apply filters",
+      "empty": "No jobs found for the selected filters."
+    },
+    "feedback_success": {
+      "title": "Submission received",
+      "message": "Your application details were received successfully.",
+      "back_home": "Back to home"
+    },
+    "feedback_error": {
+      "title": "Submission failed",
+      "message": "Please try again in a moment.",
+      "back_form": "Back to form"
+    },
+    "feedback_toast": {
+      "success": "Submitted successfully",
+      "error": "Submit failed"
+    }
+  },
+  "statics": {
+    "about": {
+      "title": "About {{ site_name }}",
+      "intro": "We build a focused hiring experience that helps candidates and hiring teams connect faster with clear role expectations.",
+      "mission_badge": "Our mission",
+      "mission_title": "Connecting talent with the right team",
+      "mission_p1": "We designed this careers site for one hiring organization, so every listing is structured, easy to compare, and actionable.",
+      "mission_p2": "Salary ranges, role type, location, and experience level are always visible to help applicants decide with confidence.",
+      "stat_openings": "Published openings",
+      "stat_response": "Average response",
+      "stat_completion": "Role detail completion",
+      "stat_platform": "Single employer focus",
+      "values_title": "Our values",
+      "values_intro": "Principles that shape our hiring experience.",
+      "value_clarity_title": "Clarity first",
+      "value_clarity_body": "Every role includes transparent details and expected outcomes.",
+      "value_speed_title": "Speed with quality",
+      "value_speed_body": "We reduce friction while preserving thoughtful evaluation.",
+      "value_fit_title": "Mutual fit",
+      "value_fit_body": "Our goal is long-term fit for both the team and applicants.",
+      "cta_title": "Ready to apply?",
+      "cta_body": "Browse our latest jobs and submit your application in minutes.",
+      "cta_button": "Explore openings"
+    },
+    "apply": {
+      "title": "Apply for a Role",
+      "intro": "Share your hiring details and submit your application request. Our team will follow up shortly.",
+      "breadcrumb": "Apply",
+      "form_title": "Submit Application Details",
+      "form_intro": "Complete the form below and we will contact you once your job submission is reviewed.",
+      "url_section_title": "Position details from URL",
+      "job_metadata": "Job metadata",
+      "job_metadata_placeholder": "No position parameters were provided in the URL.",
+      "your_details": "Your details",
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "contact": "Contact (email or phone)",
+      "contact_placeholder": "name@example.com / +1 555 123 4567",
+      "description": "Description (short profile)",
+      "description_placeholder": "Briefly introduce yourself",
+      "attachment": "Attachment (resume link or portfolio)",
+      "attachment_placeholder": "https://your-portfolio.example.com",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "submit_hint": "Your request will be sent through the existing application flow.",
+      "contact_title": "Get in Touch",
+      "contact_intro": "Need help before applying? Reach out and we will guide your submission.",
+      "contact_defaults": {
+        "email_label": "Email",
+        "phone_label": "Phone",
+        "office_label": "Office",
+        "hours_label": "Business Hours"
+      },
+      "errors": {
+        "name_required": "Name is required.",
+        "contact_required": "Contact (email or phone) is required.",
+        "description_required": "Description is required."
+      },
+      "fields": {
+        "job_title": "Job Title",
+        "location": "Location",
+        "employment_type": "Employment Type",
+        "experience_level": "Experience Level",
+        "workplace_mode": "Workplace Mode",
+        "department": "Department",
+        "skill_tags": "Skill Tags"
+      },
+      "feedback": {
+        "prefix": "[Jobs Apply]",
+        "position_details": "Position Details:",
+        "name": "Name:",
+        "contact": "Contact:",
+        "description": "Description:",
+        "attachment": "Attachment:"
+      }
+    }
+  }
+}

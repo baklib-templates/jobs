@@ -1,10 +1,16 @@
 <main class="py-16">
   <div class="mx-auto max-w-2xl px-4 sm:px-6">
     <div class="card border border-error/30 bg-base-100 p-8 text-center">
-      <div class="text-2xl font-extrabold text-base-content">Submission failed</div>
-      <p class="mt-3 text-error">{{ errors | default: 'Please try again in a moment.' }}</p>
+      <div class="text-2xl font-extrabold text-base-content">{{ 'templates.feedback_error.title' | t }}</div>
+      <p class="mt-3 text-error">
+        {%- if errors != blank -%}
+          {{ errors }}
+        {%- else -%}
+          {{ 'templates.feedback_error.message' | t }}
+        {%- endif -%}
+      </p>
       <div class="mt-6">
-        <a class="btn btn-outline" href="/s/apply" data-turbo-frame="main-content-frame" data-turbo-action="advance">Back to form</a>
+        <a class="btn btn-outline" href="/s/apply" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'templates.feedback_error.back_form' | t }}</a>
       </div>
     </div>
   </div>

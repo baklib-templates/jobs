@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex items-center gap-4">
         <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-content font-bold">J</span>
-        <div class="font-medium">© {{ 'now' | date: '%Y' }} {{ site.settings.brand_name | default: site.name }} | All rights reserved</div>
+        <div class="font-medium">© {{ 'now' | date: '%Y' }} {{ site.settings.brand_name | default: site.name }} | {{ 'generic.copyright' | t }}</div>
       </div>
       <div class="flex items-center gap-4">
         {% assign default_footer_html = '<a class="hover:text-base-content" href="javascript:void(0)">Terms</a><a class="hover:text-base-content" href="javascript:void(0)">Privacy</a><a class="hover:text-base-content" href="javascript:void(0)">Guidelines</a><a class="hover:text-base-content" href="javascript:void(0)">Why Choose Us?</a>' %}

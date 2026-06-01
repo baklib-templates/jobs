@@ -1,10 +1,16 @@
 <main class="py-16">
   <div class="mx-auto max-w-2xl px-4 sm:px-6">
     <div class="card border border-success/30 bg-base-100 p-8 text-center">
-      <div class="text-2xl font-extrabold text-base-content">Submission received</div>
-      <p class="mt-3 text-success">{{ success | default: 'Your application details were received successfully.' }}</p>
+      <div class="text-2xl font-extrabold text-base-content">{{ 'templates.feedback_success.title' | t }}</div>
+      <p class="mt-3 text-success">
+        {%- if success != blank -%}
+          {{ success }}
+        {%- else -%}
+          {{ 'templates.feedback_success.message' | t }}
+        {%- endif -%}
+      </p>
       <div class="mt-6">
-        <a class="btn btn-primary" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">Back to home</a>
+        <a class="btn btn-primary" href="{{ site.index_path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'templates.feedback_success.back_home' | t }}</a>
       </div>
     </div>
   </div>
