@@ -3,7 +3,7 @@
 {%- assign location = page.settings.location | default: page.ext_info.location -%}
 {%- assign salary = page.settings.salary | default: page.ext_info.salary -%}
 {%- assign employment_type = page.settings.employment_type | default: page.ext_info.employment_type -%}
-{%- assign workplace_mode = page.settings.workplace_mode | default: page.ext_info.workplace_mode -%}
+{%- assign workplace_mode = page.settings.workplace_mode.value | default: page.ext_info.workplace_mode -%}
 {%- assign posted_at = page.ext_info.date_posted | default: page.published_at | default: page.created_at -%}
 {%- assign apply_label = 'templates.page.apply_now' | t -%}
 {%- assign skill_tags_raw = page.settings.skill_tags | default: '' -%}
@@ -163,6 +163,7 @@
     "sub_page_templates": [],
     "settings": [
       { "type": "header", "content": "t:schema.templates.page.header_basic" },
+      { "id": "title", "type": "text", "label": "t:schema.templates.page.settings.title.label"},
       { "id": "location", "type": "select", "label": "t:schema.templates.page.settings.location.label", "choices_from": "$site.location_options", "queryable": true, "info": "t:schema.templates.page.settings.location.info" },
       { "id": "employment_type", "type": "select", "label": "t:schema.templates.page.settings.employment_type.label", "choices_from": "$site.employment_type_options", "queryable": true, "info": "t:schema.templates.page.settings.employment_type.info" },
       { "id": "salary", "type": "select", "label": "t:schema.templates.page.settings.salary.label", "choices_from": "$site.salary_options", "queryable": true, "info": "t:schema.templates.page.settings.salary.info" },

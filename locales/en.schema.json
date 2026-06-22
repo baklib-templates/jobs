@@ -78,6 +78,22 @@
       }
     }
   },
+  "head_foot_settings": {
+    "name": "Header & Footer Settings",
+    "settings": {
+      "head_html": {
+        "label": "Custom head code",
+        "info": "Place any head code like Google Analytics here."
+      },
+      "header_html": {
+        "label": "Header menu HTML",
+        "info": "Supports a list of <a> tags for desktop and mobile navigation."
+      },
+      "footer_html": {
+        "label": "Custom footer HTML"
+      }
+    }
+  },
   "templates": {
     "index": {
       "name": "Jobs Index",
@@ -103,6 +119,9 @@
       "header_basic": "Basic information",
       "header_content": "Content blocks",
       "settings": {
+        "title": {
+          "label": "Title"
+        },
         "location": {
           "label": "Location",
           "info": "Options from site setting: location_options."

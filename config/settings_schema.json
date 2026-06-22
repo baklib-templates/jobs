@@ -62,14 +62,6 @@
         "info": "t:schema.job_post_settings.settings.logo_url.info"
       },
       {
-        "id": "company_name_options",
-        "type": "textarea",
-        "label": "t:schema.job_post_settings.settings.company_name_options.label",
-        "info": "t:schema.job_post_settings.settings.company_name_options.info",
-        "rows": 6,
-        "default": "Acme Inc.\nMedium Inc.\nBeta Labs"
-      },
-      {
         "id": "location_options",
         "type": "textarea",
         "label": "t:schema.job_post_settings.settings.location_options.label",
@@ -181,6 +173,33 @@
         "id": "footer_html",
         "type": "html",
         "label": "t:schema.apply_contact_settings.settings.footer_html.label",
+        "rows": 8,
+        "default": "preset:footer_html"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.head_foot_settings.name",
+    "settings": [
+      {
+        "id": "head_html",
+        "type": "html",
+        "label": "t:schema.head_foot_settings.settings.head_html.label",
+        "rows": 8,
+        "info": "t:schema.head_foot_settings.settings.head_html.info"
+      },
+      {
+        "id": "header_html",
+        "type": "html",
+        "label": "t:schema.head_foot_settings.settings.header_html.label",
+        "rows": 8,
+        "info": "t:schema.head_foot_settings.settings.header_html.info",
+        "default": "preset:header_html"
+      },
+      {
+        "id": "footer_html",
+        "type": "html",
+        "label": "t:schema.head_foot_settings.settings.footer_html.label",
         "rows": 8,
         "default": "preset:footer_html"
       }

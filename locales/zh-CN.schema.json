@@ -78,6 +78,22 @@
       }
     }
   },
+  "head_foot_settings": {
+    "name": "页头页脚设置",
+    "settings": {
+      "head_html": {
+        "label": "自定义 head 代码",
+        "info": "可放置 Google Analytics 等 head 内嵌代码。"
+      },
+      "header_html": {
+        "label": "顶部导航 HTML",
+        "info": "支持一组 <a> 标签，用于桌面与移动端导航。"
+      },
+      "footer_html": {
+        "label": "自定义页脚 HTML"
+      }
+    }
+  },
   "templates": {
     "index": {
       "name": "招聘首页",
@@ -103,6 +119,9 @@
       "header_basic": "基本信息",
       "header_content": "内容区块",
       "settings": {
+        "title": {
+          "label": "标题"
+        },
         "location": {
           "label": "工作地点",
           "info": "选项来自站点设置 location_options。"
