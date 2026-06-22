@@ -4908,9 +4908,9 @@
       width: calc(var(--spacing) * 64);
     }
   }
-  .md\:max-w-\[min\(50\%\,20rem\)\] {
+  .md\:max-w-\[min\(50\%\,60rem\)\] {
     @media (width >= 48rem) {
-      max-width: min(50%, 20rem);
+      max-width: min(50%, 60rem);
     }
   }
   .md\:flex-none {

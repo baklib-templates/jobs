@@ -25,80 +25,80 @@
 
 <main
   class="min-h-[calc(100vh-80px)]"
-  x-data="{
+  x-data='{
     formData: {
-      name: '',
-      contact: '',
-      description: '',
-      attachment: '',
-      jobContext: ''
+      name: "",
+      contact: "",
+      description: "",
+      attachment: "",
+      jobContext: ""
     },
     errors: {},
     isSubmitting: false,
     init() {
-      const queryParams = new URLSearchParams(window.location.search)
+      const queryParams = new URLSearchParams(window.location.search);
       const fieldMappings = [
-        ['job_title', {{ 'statics.apply.fields.job_title' | t | json }}],
-        ['location', {{ 'statics.apply.fields.location' | t | json }}],
-        ['employment_type', {{ 'statics.apply.fields.employment_type' | t | json }}],
-        ['experience_level', {{ 'statics.apply.fields.experience_level' | t | json }}],
-        ['workplace_mode', {{ 'statics.apply.fields.workplace_mode' | t | json }}],
-        ['department', {{ 'statics.apply.fields.department' | t | json }}],
-        ['skill_tags', {{ 'statics.apply.fields.skill_tags' | t | json }}]
-      ]
+        ["job_title", {{ "statics.apply.fields.job_title" | t | to_json }}],
+        ["location", {{ "statics.apply.fields.location" | t | to_json }}],
+        ["employment_type", {{ "statics.apply.fields.employment_type" | t | to_json }}],
+        ["experience_level", {{ "statics.apply.fields.experience_level" | t | to_json }}],
+        ["workplace_mode", {{ "statics.apply.fields.workplace_mode" | t | to_json }}],
+        ["department", {{ "statics.apply.fields.department" | t | to_json }}],
+        ["skill_tags", {{ "statics.apply.fields.skill_tags" | t | to_json }}]
+      ];
 
       const lines = fieldMappings
         .map(([key, label]) => {
-          const value = queryParams.get(key)
-          return value ? `${label}: ${value}` : ''
+          const value = queryParams.get(key);
+          return value ? `${label}: ${value}` : "";
         })
-        .filter(Boolean)
+        .filter(Boolean);
 
-      this.formData.jobContext = lines.join('\n')
+      this.formData.jobContext = lines.join("\n");
 
       this.$nextTick(() => {
-        const formEl = this.$refs.submitBtn?.form
+        const formEl = this.$refs.submitBtn?.form;
         if (formEl) {
-          formEl.setAttribute('data-turbo', 'false')
-          formEl.setAttribute('data-turbo-frame', '_top')
+          formEl.setAttribute("data-turbo", "false");
+          formEl.setAttribute("data-turbo-frame", "_top");
         }
-      })
+      });
     },
     submitForm() {
-      this.errors = {}
-      this.isSubmitting = true
+      this.errors = {};
+      this.isSubmitting = true;
 
-      if (!this.formData.name) this.errors.name = {{ 'statics.apply.errors.name_required' | t | json }}
-      if (!this.formData.contact) this.errors.contact = {{ 'statics.apply.errors.contact_required' | t | json }}
-      if (!this.formData.description) this.errors.description = {{ 'statics.apply.errors.description_required' | t | json }}
+      if (!this.formData.name) { this.errors.name = {{ "statics.apply.errors.name_required" | t | to_json }}; }
+      if (!this.formData.contact) { this.errors.contact = {{ "statics.apply.errors.contact_required" | t | to_json }}; }
+      if (!this.formData.description) { this.errors.description = {{ "statics.apply.errors.description_required" | t | to_json }}; }
 
       if (Object.keys(this.errors).length > 0) {
-        this.isSubmitting = false
-        return
+        this.isSubmitting = false;
+        return;
       }
 
-      let lines = []
-      lines.push({{ 'statics.apply.feedback.prefix' | t | json }})
-      if (this.formData.jobContext) lines.push({{ 'statics.apply.feedback.position_details' | t | json }} + '\\n' + this.formData.jobContext)
-      if (this.formData.name) lines.push({{ 'statics.apply.feedback.name' | t | json }} + ' ' + this.formData.name)
-      if (this.formData.contact) lines.push({{ 'statics.apply.feedback.contact' | t | json }} + ' ' + this.formData.contact)
-      if (this.formData.description) lines.push({{ 'statics.apply.feedback.description' | t | json }} + '\\n' + this.formData.description)
-      if (this.formData.attachment) lines.push({{ 'statics.apply.feedback.attachment' | t | json }} + ' ' + this.formData.attachment)
+      let lines = [];
+      lines.push({{ "statics.apply.feedback.prefix" | t | to_json }});
+      if (this.formData.jobContext) { lines.push({{ "statics.apply.feedback.position_details" | t | to_json }} + "\n" + this.formData.jobContext); }
+      if (this.formData.name) { lines.push({{ "statics.apply.feedback.name" | t | to_json }} + " " + this.formData.name); }
+      if (this.formData.contact) { lines.push({{ "statics.apply.feedback.contact" | t | to_json }} + " " + this.formData.contact); }
+      if (this.formData.description) { lines.push({{ "statics.apply.feedback.description" | t | to_json }} + "\n" + this.formData.description); }
+      if (this.formData.attachment) { lines.push({{ "statics.apply.feedback.attachment" | t | to_json }} + " " + this.formData.attachment); }
 
-      $refs.messageInput.value = lines.join('\\n')
-      $refs.submitBtn.click()
+      this.$refs.messageInput.value = lines.join("\n");
+      this.$refs.submitBtn.click();
 
-      const jobContext = this.formData.jobContext
+      const jobContext = this.formData.jobContext;
       this.formData = {
-        name: '',
-        contact: '',
-        description: '',
-        attachment: '',
+        name: "",
+        contact: "",
+        description: "",
+        attachment: "",
         jobContext: jobContext
-      }
-      this.isSubmitting = false
+      };
+      this.isSubmitting = false;
     }
-  }"
+  }'
 >
   <section class="bg-primary py-16 lg:py-24 text-primary-content">
     <div class="mx-auto max-w-6xl px-6 text-center">
@@ -130,14 +130,12 @@
 
             <div class="mt-8 space-y-6 rounded-box border border-base-300 bg-base-100 p-6 sm:p-8">
               <div>
-                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">0.</span> {{ 'statics.apply.url_section_title' | t }}</div>
                 <div>
-                  <label class="mb-1 block text-sm font-semibold text-base-content" for="job-context">{{ 'statics.apply.job_metadata' | t }}</label>
-                  <textarea id="job-context" class="form-textarea" rows="6" x-model="formData.jobContext" readonly placeholder="{{ 'statics.apply.job_metadata_placeholder' | t }}"></textarea>
+                  <textarea id="job-context" class="form-textarea hidden" rows="6" x-model="formData.jobContext" readonly placeholder="{{ 'statics.apply.job_metadata_placeholder' | t }}"></textarea>
                 </div>
               </div>
               <div>
-                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary">1.</span> {{ 'statics.apply.your_details' | t }}</div>
+                <div class="mb-3 text-base font-extrabold text-base-content"><span class="text-primary"></span> {{ 'statics.apply.your_details' | t }}</div>
                 <div class="space-y-4">
                   <div>
                     <label class="mb-1 block text-sm font-semibold text-base-content" for="name">{{ 'statics.apply.name' | t }}</label>
