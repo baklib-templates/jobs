@@ -37,6 +37,7 @@
       </div>
 
       <nav class="flex grow items-center justify-end gap-2">
+        <a href="{{ site.search_path }}" class="btn btn-ghost btn-sm" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.search' | t }}</a>
         <div class="hidden sm:flex items-center gap-1 [&>a]:inline-flex [&>a]:items-center [&>a]:rounded-btn [&>a]:px-3 [&>a]:py-2 [&>a]:text-sm [&>a]:font-medium [&>a]:text-base-content/80 [&>a]:transition-colors [&>a]:hover:text-base-content [&>a]:focus-visible:outline-none [&>a]:focus-visible:ring-2 [&>a]:focus-visible:ring-primary/40">
           {{ header_html | raw }}
         </div>

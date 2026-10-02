@@ -86,6 +86,13 @@
     "feedback_toast": {
       "success": "Submitted successfully",
       "error": "Submit failed"
+    },
+    "search": {
+      "title": "Search",
+      "hint": "Find roles, teams, and hiring pages.",
+      "placeholder": "Role, skill, or team",
+      "empty": "No results.",
+      "prompt": "Enter a keyword to start searching."
     }
   },
   "statics": {
