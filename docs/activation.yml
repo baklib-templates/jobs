@@ -1,0 +1,16 @@
+apply: site_pages
+page_template: page
+ask_path: -/search
+arrangements:
+  - key: original
+    title: 职位保持来源层级
+    description: 按网址路径或文件夹，职位页的上下级不动。
+    rule: original
+  - key: teams
+    title: 顶层目录变成职位组
+    description: 一个顶层文件夹对应一组职位。
+    rule: top_folder
+  - key: flat
+    title: 职位全部挂在首页下
+    description: 不按部门分文件夹，职位都放在首页下面。
+    rule: flat

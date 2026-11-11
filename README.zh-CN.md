@@ -1,5 +1,18 @@
 # Baklib CMS — 招聘门户主题（简体中文说明）
 
+[English](README.md) | 简体中文
+
+这是招聘站点（标识 `jobs`，范围 cms）。适合职位组和在招职位。不适合活动站，也不适合知识库。
+
+| 文件 | 读它是为了 |
+| --- | --- |
+| [docs/README.md](docs/README.md) | 分册目录 |
+| [docs/overview.md](docs/overview.md) | 是什么、什么场合用 |
+| [docs/structure.md](docs/structure.md) | 首页、职位组和职位 |
+| [docs/schema.md](docs/schema.md) | 字段 id，以及能不能改 |
+| [docs/usage.md](docs/usage.md) | 建站后怎么配 |
+| [docs/activation.yml](docs/activation.yml) | 快速开始的编排配方 |
+
 面向 Baklib 站点的轻量 **招聘门户 / 雇主品牌 / 职位发布** 主题：提供清晰的职位列表与分类、结构化的职位字段（地点、用工类型、薪资、办公方式等）、在线申请与简历收集模块，样式基于 Tailwind CSS 与 daisyUI。
 
 模板 git 地址：https://github.com/baklib-templates/jobs

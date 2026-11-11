@@ -161,6 +161,55 @@
     "thumb_url": "images/theme/${lang}/page.png",
     "preview_image_urls": ["images/theme/${lang}/page.png"],
     "sub_page_templates": [],
+    "context_schema": {
+      "key": "jobs",
+      "label": "t:schema.context_schema.label",
+      "version": 1,
+      "content_types": [
+        {
+          "key": "job",
+          "label": "t:schema.context_schema.types.job.label",
+          "templates": [
+            "page"
+          ],
+          "fields": [
+            {
+              "key": "topics",
+              "label": "t:schema.context_schema.types.job.fields.topics.label",
+              "type": "tags",
+              "policy": "ai_auto"
+            },
+            {
+              "key": "summary",
+              "label": "t:schema.context_schema.types.job.fields.summary.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "responsibilities",
+              "label": "t:schema.context_schema.types.job.fields.responsibilities.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "requirements",
+              "label": "t:schema.context_schema.types.job.fields.requirements.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            }
+          ],
+          "relations": [
+            {
+              "type": "related_to",
+              "label": "t:schema.context_schema.types.job.relations.related_to.label",
+              "inverse": "related_to",
+              "cardinality": "many",
+              "policy": "suggest"
+            }
+          ]
+        }
+      ]
+    },
     "settings": [
       { "type": "header", "content": "t:schema.templates.page.header_basic" },
       { "id": "title", "type": "text", "label": "t:schema.templates.page.settings.title.label"},

@@ -18,8 +18,14 @@
       "images/theme/${lang}/channel.png"
     ],
     "theme_languages": [
-      { "name": "简体中文", "value": "zh-CN" },
-      { "name": "English", "value": "en" }
+      {
+        "name": "简体中文",
+        "value": "zh-CN"
+      },
+      {
+        "name": "English",
+        "value": "en"
+      }
     ],
     "recommendations": {
       "color_schemas": {
@@ -202,6 +208,37 @@
         "label": "t:schema.head_foot_settings.settings.footer_html.label",
         "rows": 8,
         "default": "preset:footer_html"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.weixin_share.title",
+    "settings": [
+      {
+        "id": "weixin_app_id",
+        "type": "text",
+        "label": "t:schema.weixin_share.weixin_app_id.label",
+        "info": "t:schema.weixin_share.weixin_app_id.info"
+      },
+      {
+        "id": "weixin_app_secret",
+        "type": "text",
+        "label": "t:schema.weixin_share.weixin_app_secret.label",
+        "info": "t:schema.weixin_share.weixin_app_secret.info"
+      },
+      {
+        "id": "weixin_enabled",
+        "type": "checkbox",
+        "label": "t:schema.weixin_share.weixin_enabled.label",
+        "default": false,
+        "info": "t:schema.weixin_share.weixin_enabled.info"
+      },
+      {
+        "id": "weixin_debug",
+        "type": "checkbox",
+        "label": "t:schema.weixin_share.weixin_debug.label",
+        "default": false,
+        "info": "t:schema.weixin_share.weixin_debug.info"
       }
     ]
   }

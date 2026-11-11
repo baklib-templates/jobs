@@ -1,5 +1,18 @@
 # Baklib CMS — Jobs theme
 
+[简体中文](README.zh-CN.md) | English
+
+This is a recruiting site (identifier `jobs`, scope cms). Use it for job groups and open roles. Skip it for an events site or a knowledge base.
+
+| File | Read it to learn |
+| --- | --- |
+| [docs/README.md](docs/README.md) | Index of the docs |
+| [docs/overview.md](docs/overview.md) | What it is, and when to use it |
+| [docs/structure.md](docs/structure.md) | Home, job groups, and roles |
+| [docs/schema.md](docs/schema.md) | Field ids, and which ones are writable |
+| [docs/usage.md](docs/usage.md) | How to set the site up |
+| [docs/activation.yml](docs/activation.yml) | Get-started arrangement recipe |
+
 A lightweight **recruiting portal / employer branding / job board** theme for Baklib-powered sites. It ships with structured job posts (location, employment type, salary, workplace mode), department/channel listing, online application forms, and Tailwind CSS–based styling.
 
 Template Git URL: https://github.com/baklib-templates/jobs

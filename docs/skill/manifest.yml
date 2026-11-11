@@ -1,0 +1,86 @@
+skill:
+  version: 2
+  preset: jobs
+  writer: site_pages
+  summary: 职位组、岗位说明和实际求职反馈表单。
+  home:
+    template: index
+    hero_fields:
+    - hero_title
+    - hero_description
+    slots: 0
+  navigation: {}
+  site_fields:
+  - logo_url
+  - location_options
+  - salary_options
+  - employment_type_options
+  - apply_contact_email_label
+  - apply_contact_email
+  - apply_contact_phone_label
+  - apply_contact_phone
+  - apply_contact_office_label
+  - apply_contact_office_line1
+  - apply_contact_office_line2
+  - apply_contact_hours_label
+  - apply_contact_hours_line1
+  - apply_contact_hours_line2
+  page_types:
+  - template: channel
+    role: channel
+    writable:
+    - title
+    - description
+  - template: feedback_error
+    role: feedback_error
+    writable: []
+  - template: feedback_error_turbo_stream
+    role: feedback_error_turbo_stream
+    writable: []
+  - template: feedback_success
+    role: feedback_success
+    writable: []
+  - template: feedback_success_turbo_stream
+    role: feedback_success_turbo_stream
+    writable: []
+  - template: index
+    role: index
+    writable:
+    - hero_title
+    - hero_description
+    - hero_bg_url
+  - template: page
+    role: page
+    writable:
+    - title
+    - location
+    - employment_type
+    - salary
+    - workplace_mode
+    - featured
+    - skill_tags
+    - responsibilities
+    - requirements
+    - content
+  limits:
+    channels: 20
+    pages: 100
+  industries: []
+  content_model:
+    hierarchy:
+    - channel
+    - page
+    body_field: content
+    default_access: public
+    source_of_truth: site_pages
+    boundaries:
+    - 不提供完整 ATS、面试安排或录用流程
+  customization:
+    mode: organization_candidate
+    protected:
+    - content_model
+    - source_references
+    - permissions
+    - identity
+    - forms
+    - dam_references
